@@ -56,39 +56,22 @@
         .links {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Center-align cards */
-            gap: 20px; /* Spacing between cards */
-            padding: 20px;
+            justify-content: center;
+            gap: 20px;
         }
-        .links a {
-            text-decoration: none; /* Remove underline */
-            color: inherit; /* Keep text color */
-            display: flex; /* Makes the <a> tag behave like a block */
-        }
-
-
         .link-card {
-            display: block; /* Make the whole card clickable */
-            background-color: white;
+            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             width: 250px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .link-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            background-color: #f0f0f0; /* Light grey hover */
         }
-        .link-card:active {
-            transform: scale(0.98); /* Small shrink effect */
-            background-color: #e0e0e0; /* Slightly darker grey */
-        }
-
-
-
         .link-card h3 {
             font-size: 1.6em;
             color: #2575fc;
@@ -121,20 +104,26 @@
     <div id="documentation" class="section">
         <h2>My documentation samples</h2>
         <div class="links">
-            <a href="feature-guide.html" class="link-card">
-                <h3>REST API Docs</h3>
-                <p>Explore REST API documentation.</p>
-            </a>
-            
-            <a href="graphql-api-docs.html" class="link-card">
-                <h3>GraphQL API Docs</h3>
-                <p>Check out GraphQL API documentation.</p>
-            </a>
-            
-            <a href="webhooks-guide.html" class="link-card">
-                <h3>Webhooks Guide</h3>
-                <p>Learn about webhooks and integrations.</p>
-            </a>
+            <div class="link-card">
+                <h3>API Documentation</h3>
+                <p>Explore the detailed API guides and examples.</p>
+                <!--<a href="#api">View API Docs</a>-->
+            </div>
+            <div class="link-card">
+                <h3>Feature guides</h3>
+                <p>A collection of feature guides of cool features in your online store</p>
+                <a href="feature-guide.html">View Guides</a>
+            </div>
+            <div class="link-card">
+                <h3>User Manual</h3>
+                <p>Find out how to use the software efficiently with this manual.</p>
+                <!--<a href="#user-manual">View User Manual</a>-->
+            </div>
+            <div class="link-card">
+                <h3>FAQ</h3>
+                <p>Find answers to frequently asked questions about the product.</p>
+                <!--<a href="#faq">View FAQ</a>-->
+            </div>
         </div>
     </div>
 
