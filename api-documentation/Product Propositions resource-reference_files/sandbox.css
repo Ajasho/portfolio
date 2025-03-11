@@ -1,0 +1,28 @@
+.resource-content .scenario-details .request-method {
+    color: white;
+    width: 10%;
+    background-color: #090b01;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.resource-content .scenario-details .request-url {
+    color: white;
+    width: 90%;
+    background-color: #30373B;
+    vertical-align: middle;
+}
+
+.resource-content .scenario-details .scenario-name {
+    background-color: #F9FAFA;
+}
+
+.resource-content .scenario-title {
+    color: black;
+    margin-top: 40px;
+}
+
+.resource-content .scenario-details pre {
+    margin-top: 10px;
+    margin-bottom: 8px !important;
+}

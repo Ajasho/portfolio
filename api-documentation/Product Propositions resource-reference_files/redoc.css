@@ -1,0 +1,67 @@
+#redoc label {
+  text-transform: none !important;
+  font-weight: normal !important;
+}
+#redoc .token.boolean {
+  color: darkorange !important;
+}
+#redoc code {
+  background-color: rgb(38, 50, 56 / 6%);
+  padding: 3px 3px;
+  font-size: 14px;
+  border-color: #e1e1e1;
+}
+#redoc .redoc-json code {
+  color: white !important;
+}
+#brd {
+  width: calc((100% - 260px) * 0.6 + 260px);
+  padding: 15px 15px 0px 15px;
+}
+#rt {
+  width: calc((100% - 260px) * 0.4);
+  background-color: rgb(48, 55, 59);
+}
+@media print, screen and (max-width: 75rem) {
+  #brd {
+    width: 100%;
+  }
+  #rt {
+    display: none;
+  }
+}
+
+#redoc details {
+  padding: 0 0.5em;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+#redoc details summary {
+  color: #00a3e0;
+  list-style: none;
+}
+
+#redoc details summary::-webkit-details-marker {
+  display: none;
+}
+#redoc details summary::before {
+  content: "\203A";
+  position: relative;
+  display: inline-block;
+  font-size: 2em;
+  width: 12px;
+  top: 4px;
+  left: -5px;
+}
+
+#redoc details[open] summary::before {
+  content: "\2304";
+  left: -12px
+}
+
+#redoc code.language-json > span  {
+  color: black !important;
+  text-shadow: none;
+}

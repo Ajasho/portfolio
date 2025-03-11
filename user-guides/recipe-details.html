@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+
+    
+    <meta name="google-site-verification" content="AzlLnJeYA7fXStALfe33QQH2PIIY2UTCGX0wrJjX_y0">
+    <meta name="author" content="Ocado Technology">
+
+    <link rel="icon" href="https://help.abundo.osp.tech/assets/images/common/color-favicon2.ico">
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="./Recipe details_files/css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="./Recipe details_files/online-help.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/style.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/dark.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/font-icons.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/animate.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/swiper.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/responsive.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/en-us.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/custom.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/github.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/snackbar.css" type="text/css">
+    <link rel="stylesheet" href="./Recipe details_files/colors-help.css" type="text/css">
+    <!--<link rel="stylesheet" href="/css/glossary/en-us-glossary.css" type="text/css"/>-->
+
+
+    
+
+    
+
+    <link rel="stylesheet" href="./Recipe details_files/sandbox.css" type="text/css">
+
+    
+
+    <link rel="stylesheet" href="./Recipe details_files/colors-help.css" type="text/css">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Recipe details</title>
+
+    <!-- Document description
+    ============================================= -->
+    <meta name="description" content="Learn how to create a new recipe.">
+
+    <!-- jQuery
+    ============================================= -->
+    <script async="" crossorigin="anonymous" src="./Recipe details_files/fs.js"></script><script type="text/javascript" src="./Recipe details_files/jquery.js"></script>
+
+    <!-- Mermaid.js
+    ============================================= -->
+    <script type="text/javascript" src="./Recipe details_files/mermaid.js"></script>
+  <script type="text/javascript" async="" src="./Recipe details_files/js"></script><style>@keyframes spin{100%{transform:rotate(360deg)}}.Spinner{display:flex;justify-content:center}.Spinner i{animation:spin 1s linear infinite}</style><style>.breadcrumb__link-divider{padding:0 .5rem}</style><style>.search-result__title{margin-bottom:0}.search-result__container:first-child .search-result__title{border:0;margin-top:0;padding-top:0}</style><style>.search-form{display:flex;justify-content:center;margin:2rem 0 7rem}.search-form__field{background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDg1LjIxMyA0ODUuMjEzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODUuMjEzIDQ4NS4yMTM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNDcxLjg4Miw0MDcuNTY3TDM2MC41NjcsMjk2LjI0M2MtMTYuNTg2LDI1Ljc5NS0zOC41MzYsNDcuNzM0LTY0LjMzMSw2NC4zMjFsMTExLjMyNCwxMTEuMzI0ICAgIGMxNy43NzIsMTcuNzY4LDQ2LjU4NywxNy43NjgsNjQuMzIxLDBDNDg5LjY1NCw0NTQuMTQ5LDQ4OS42NTQsNDI1LjMzNCw0NzEuODgyLDQwNy41Njd6IiBmaWxsPSIjOWQ5ZDlkIi8+CgkJPHBhdGggZD0iTTM2My45MDksMTgxLjk1NUMzNjMuOTA5LDgxLjQ3MywyODIuNDQsMCwxODEuOTU2LDBDODEuNDc0LDAsMC4wMDEsODEuNDczLDAuMDAxLDE4MS45NTVzODEuNDczLDE4MS45NTEsMTgxLjk1NSwxODEuOTUxICAgIEMyODIuNDQsMzYzLjkwNiwzNjMuOTA5LDI4Mi40MzcsMzYzLjkwOSwxODEuOTU1eiBNMTgxLjk1NiwzMTguNDE2Yy03NS4yNTIsMC0xMzYuNDY1LTYxLjIwOC0xMzYuNDY1LTEzNi40NiAgICBjMC03NS4yNTIsNjEuMjEzLTEzNi40NjUsMTM2LjQ2NS0xMzYuNDY1Yzc1LjI1LDAsMTM2LjQ2OCw2MS4yMTMsMTM2LjQ2OCwxMzYuNDY1ICAgIEMzMTguNDI0LDI1Ny4yMDgsMjU3LjIwNiwzMTguNDE2LDE4MS45NTYsMzE4LjQxNnoiIGZpbGw9IiM5ZDlkOWQiLz4KCQk8cGF0aCBkPSJNNzUuODE3LDE4MS45NTVoMzAuMzIyYzAtNDEuODAzLDM0LjAxNC03NS44MTQsNzUuODE2LTc1LjgxNFY3NS44MTZDMTIzLjQzOCw3NS44MTYsNzUuODE3LDEyMy40MzcsNzUuODE3LDE4MS45NTV6IiBmaWxsPSIjOWQ5ZDlkIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);background-position:97% 50%;background-repeat:no-repeat;background-size:auto 17px;border-color:#000;border-radius:5px;box-shadow:0 18px 28px 0 rgba(0,0,0,.1)}</style><style>@keyframes spin{100%{transform:rotate(360deg)}}.search__loading{display:flex;justify-content:center;padding:50px 0}.search__loading i{animation:spin 1s linear infinite}.search__tabs{margin-bottom:2rem}</style><style>.side-nav-item>a{padding-bottom:.5rem;padding-top:.5rem}.side-nav-item.nav-item--active>a{color:#2498d4}</style><style>.side-nav-list.nav{margin-left:-14px;margin-top:-0.5rem}.side-nav-list.nav .side-nav-list{margin-left:1.2rem;margin-top:0}</style><style>.Dashboard{margin-bottom:4.5rem;padding-top:1.5rem}.Dashboard__section{border-bottom:solid 1px rgba(0,0,0,.1);margin-bottom:1.5rem;padding-bottom:1.5rem;top:1.5rem}.Dashboard__section:last-child{border-bottom:0}.Dashboard__section h1{text-align:center}.Dashboard__section .row{margin-top:3rem}.Dashboard__card h3{font-size:15px}.Dashboard__card p{font-size:15px}</style><style>.InternalToc{font-size:15px}.InternalToc::before{content:"On this page";display:block;font-size:13px;text-transform:uppercase;color:var(--gray);margin-bottom:.25rem}.InternalToc>div{margin-bottom:.25rem}.InternalToc a{color:#000;display:block}.InternalToc a:hover,.InternalToc .active>a{color:#2498d4}.InternalToc .has-indent{padding-left:1rem}</style><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style type="text/css" nonce="" media="print">.usabilla_live_button_container { display: none; }</style><style type="text/css" nonce="">iframe.usabilla-live-button#usabilla_live_button_container_iframe32642354{width:40px;height:166px;margin: 0;padding: 0;border: 0;overflow: hidden;z-index: 9998;position: absolute;left: 0;top: 0;box-shadow: 0 0 0;background-color: transparent;}</style></head>
+
+  <body class="stretched no-transition device-lg" data-new-gr-c-s-check-loaded="14.1226.0" data-gr-ext-installed=""><div id="usabilla" style="display: none;"><iframe id="usabilla-6cf187e194da" src="./Recipe details_files/saved_resource.html"></iframe></div><div id="lightningjs-usabilla_live" style="display: none;"><div><iframe frameborder="0" id="lightningjs-frame-usabilla_live" src="./Recipe details_files/saved_resource(1).html"></iframe></div></div>
+
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="fs-unmask clearfix">
+
+        <div id="snackbar">This page does not exist in your language version of help, you have been redirected to English version</div>
+
+        <!-- Header
+        ============================================= -->
+    <header id="header" class="no-sticky dark">
+
+    <div id="header-wrap">
+
+      <div class="container clearfix">
+
+<!--        <div id="primary-menu-trigger">-->
+
+<!--          <i class="icon-reorder"></i>-->
+
+<!--        </div>-->
+
+        
+
+
+
+
+<nav id="primary-menu" class="navbar navbar-expand-lg navbar-dark not-dark">
+    <!-- Logo
+    ============================================= -->
+    <a href="https://help.abundo.osp.tech/en-us/index" class="navbar-brand">
+        <img height="55px" src="./Recipe details_files/help-center-logo.svg" alt="OSP Help Center"></a>
+    <!-- #logo end -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto osp-navbar osp-header-nav-toc sf-js-enabled" data-language="en-us" style="touch-action: pan-y;"><li class="nav-item active sub-menu"><a class="nav-link match-header-vertical-padding sf-with-ul" href="https://help.abundo.osp.tech/en-us/help/">Help topics</a><ul class="dropdown-menu" style="display: none;"><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/getting-started/">Getting started with OSP</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/account/">Managing your OSP account</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/ecommerce/">Ecommerce</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/cfc/">CFC</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/external-delivery/">External delivery</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/scheduled-delivery/">Scheduled Delivery</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/fulfillment-admin/">Fulfillment Management</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/micro-cfc/">Micro CFC</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/customer-collection/">Customer collection</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/charges/">Charges</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/user-guides/ecom-delivery-pass/index">Delivery Pass</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/fraud/">Fraud</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/isf/">In-store fulfillment</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/user-guides/lp-live-slot-availability/">Live Slot Availability</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/notifications/">Notifications</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/online-store-configuration/">Online store configuration</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/online-store-content/">Online store content</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/contentful/">Contentful</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/payments/">Payments</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/user-guides/ecom-promotions/">Promotions</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/receipts/">Receipts</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/roles/">Roles</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/service-accounts/">Service accounts</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/user-guides/lp-slots/">Slots</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/sites/">Sites</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/solutions/supply-chain/">Supply chain</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/transfers/">Transfers</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/users/">Users</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/help/commerce/">Mobile ecommerce app</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/explainers/regions">Regions</a></li></ul></li><li class="nav-item"><a class="nav-link match-header-vertical-padding" href="https://help.abundo.osp.tech/en-us/explainers/">OSP Explained</a></li><li class="nav-item"><a class="nav-link match-header-vertical-padding" href="https://help.abundo.osp.tech/en-us/kt/">Ocado Insights</a></li><li class="nav-item sub-menu"><a class="nav-link match-header-vertical-padding sf-with-ul" href="https://help.abundo.osp.tech/en-us/developer/">Developers</a><ul class="dropdown-menu" style="display: none;"><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/api/getting-started/">Introduction to OSP's REST APIs</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/api/reference/">REST API reference</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/api/sandbox/">Sandbox environment</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/webhooks/">Webhook events reference</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/feeds/">Getting started with the OSP data feeds</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/feeds/reference/">Data feed reference</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/ga/">Google Analytics</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/api/sso-integration/">Single sign-on (SSO)</a></li><li><a class="nav-link" href="https://help.abundo.osp.tech/en-us/developer/api/machine-learning/">Machine learning</a></li></ul></li><li class="nav-item"><a class="nav-link match-header-vertical-padding" href="https://help.abundo.osp.tech/en-us/release-notes/">Release Notes</a></li><li class="nav-item"><a class="nav-link match-header-vertical-padding" href="https://help.abundo.osp.tech/en-us/support/">Support</a></li></ul>
+        <ul class="navbar-nav sf-js-enabled" style="touch-action: pan-y;">
+            <li class="nav-item sub-menu">
+                <a class="nav-link match-header-vertical-padding sf-with-ul" href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#" id="language-switcher-trigger">English</a>
+                <ul id="language-switcher-content" style="display: none;">
+
+                <li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#" class="nav-link" onclick="switchToLang(&#39;fr-ca&#39;)">Français (Canada)</a></li></ul>
+            </li>
+            <li class="nav-item">
+                <!-- Logged in user
+                ============================================= -->
+                <a class="nav-link match-header-vertical-padding" href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#" id="top-cart-trigger"><i class="icon-user"></i></a>
+<div id="top-cart">
+    <span style="color: #fff; font-size: 16px;">
+        <span class="fs-mask logged-user-name" style="font-weight: bold;">a.kambalath@ocadotech</span>
+        |
+        <form action="https://help.abundo.osp.tech/logout" method="post" style=" display: inline; cursor: pointer;" class="logout-form">
+            <a onclick="$(this).closest(&#39;form&#39;).submit()">Logout</a>
+            <input type="hidden" name="_csrf" value="">
+        </form>
+    </span>
+    <script type="text/javascript">
+        jQuery.noConflict
+    </script>
+    <script src="./Recipe details_files/authentication.js"></script>
+</div>
+                <!-- #top-cart end -->
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+      </div>
+
+    </div>
+
+    </header><!-- #header end -->
+
+    <!-- API URL script -->
+
+    <script type="text/javascript" src="./Recipe details_files/api-url.js"></script>
+
+    
+
+
+<div class="clear"></div>
+<script type="text/javascript" src="./Recipe details_files/url-utils.js"></script>
+<script type="text/javascript" src="./Recipe details_files/content-config.js"></script>
+<script type="text/javascript" src="./Recipe details_files/search-bar-placeholder.js"></script>
+
+
+<!-- Content
+============================================= -->
+<section id="page-title-search">
+    <div align="center">
+        <form action="https://help.abundo.osp.tech/en-us/search" method="get">
+            <input id="landing-search" type="text" class="query" name="query" placeholder="Search the user manual">
+        </form>
+    </div>
+</section>
+
+<section id="content">
+    <div id="help-heading" class="content-wrap">
+        <div class="container clearfix">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p id="help-class">
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="breadcrumbs2"><a href="https://help.abundo.osp.tech/en-us/">Home
+</a> / <a href="https://help.abundo.osp.tech/en-us/solutions/ecommerce/">Ecommerce</a> / <a href="https://help.abundo.osp.tech/en-us/solutions/ecommerce/customer">Customer and Communication</a> / <a href="https://help.abundo.osp.tech/en-us/solutions/ecommerce/customer-user-guides">User guides
+</a> / <a href="https://help.abundo.osp.tech/en-us/help/contentful/">Contentful user guide</a> / Recipe details </p>
+                        <p></p>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><div class="osp-side-nav" data-group="contentful" data-language="en-us"><div class="side-toc"><ul class="side-nav-list nav flex-column"><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/">Contentful web app</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/get-started/">Get started</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/ad-banners/">Ad banners</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/category-pages/">Category pages</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/checkout-walk/">Checkout walk</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/delivery-pass/">Delivery Pass</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/componentized-homepage/">Componentized homepage</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/featured-product/">Featured products</a></li><li class="side-nav-item nav-item nav-item--active"><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/">Recipes</a><ul class="side-nav-list nav flex-column"><li class="side-nav-item nav-item nav-item--active"><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/working-with-recipes">Work with recipes</a><ul class="side-nav-list nav flex-column"><li class="side-nav-item nav-item nav-item--active"><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details">Recipe details</a><ul class="side-nav-list nav flex-column"><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-author">Author</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-sdc">Structured data category</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-uom">Unit of measurement</a></li></ul></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-collections">Recipe collection</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-homepage">Recipe home page</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-seo">SEO settings</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/store-home-page-card">Store home page card</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/store-home-page-container">Store home page container</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-content-card">Recipe content card</a></li></ul></li></ul></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/pages/">Static pages</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/footers/">Footers</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/menu-campaigns/">Menu campaigns</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/shop-in-shop/">Shop-in-shop</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/tabs/">Tabs</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/content-blocks/">Content blocks</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/composable-navbar/">Composable navbars</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/priority-levels/">Priority levels</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/help/contentful/region-groups/">Region groups</a></li></ul></div></div>
+</div>
+                <div class="col-md-9 pl-4 pr-4">
+                    
+
+                    
+                        <h1 style="padding-top: 5px" id="help-page-title">
+                    
+
+                    Recipe details</h1>
+
+                    <div class="entry-content notopmargin">
+                        
+                        
+
+                        
+                        <p>This page displays detailed information about the specific recipe.</p>
+
+<p>This page also displays the <strong>Shop for ingredients</strong> button that customers can use if they decide to buy the ingredients of this recipe.</p>
+
+<div><div class="img-wrapper"><a href="./Recipe details_files/recipe-details.png" data-lightbox="image"><img class="image_fade" src="./Recipe details_files/recipe-details.png" alt="Recipe details" width="70%" style="opacity: 0.832;"></a></div></div>
+
+<div id="toc"><h2 class="minitoc-title"></h2> <ul><li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#create-a-new-recipe-details-page">Create a new recipe details page</a></li><li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#configuration">Configuration</a></li></ul></div><h2 id="create-a-new-recipe-details-page" class="clickable-header">Create a new recipe details page</h2>
+
+<p>To create a new recipe details page:</p>
+
+<ol>
+  <li>
+    <p>On the Contentful landing page, go to the <strong>Content</strong> tab.</p>
+  </li>
+  <li>
+    <p>Click <strong>Add Entry</strong> and select <strong>Recipes : Recipe details</strong>.</p>
+  </li>
+  <li>
+    <p>Complete all required fields - see the <a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#1">Configuration</a> section for guidance.</p>
+  </li>
+  <li>
+    <p>Click <strong>Publish</strong>.</p>
+  </li>
+</ol>
+
+<p><a name="1"></a></p>
+<h2 id="configuration" class="clickable-header">Configuration</h2>
+
+<p>When creating a new recipe details page, there are several sections (see note below) to complete.</p>
+
+<blockquote class="note">
+  <p>The sections are not reflected in the interface and are only used to better describe the purpose and context of each field.</p>
+</blockquote>
+
+<ul>
+  <li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#2">Recipe identification</a></li>
+  <li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#3">Recipe image</a></li>
+  <li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#4">Recipe details</a></li>
+  <li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#5">SEO</a></li>
+  <li><a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-details#6">Retailer content ID</a></li>
+</ul>
+
+<p><a name="2"></a></p>
+<h3 id="recipe-identification">Recipe identification</h3>
+
+<p>This section includes the following required fields:</p>
+
+<ul>
+  <li>
+    <p><strong>Title</strong> - specify a title for your recipe. The title is displayed as the name of the recipe in your online store.</p>
+  </li>
+  <li>
+    <p><strong>Description</strong> - Add a description for the recipe. The description is displayed as the description of the recipe in your online store.</p>
+  </li>
+</ul>
+
+<blockquote class="note">
+  <p>If your online store supports multiple languages, you must specify the <strong>Title</strong> and <strong>Description</strong> in each of those languages.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>Slug</strong> - specify a slug for your recipe. The slug is a lowercase string with hyphens in place of spaces, and displays in the browser URL.</p>
+
+    <p>If empty, the slug is sourced from the <strong>Title</strong> field.</p>
+  </li>
+</ul>
+
+<p><a name="3"></a></p>
+<h3 id="recipe-image">Recipe image</h3>
+
+<p>This section includes the following required fields:</p>
+
+<ul>
+  <li>
+    <p><strong>Image</strong> - add an image for the recipe.</p>
+
+    <blockquote class="note">
+      <ul>
+        <li>Use an image with a minimum size of 1280px × 1280px. See <a href="https://help.abundo.osp.tech/en-us/help/contentful/image-guidelines">image guidelines</a> for the detailed specification.</li>
+        <li>If your online store supports multiple languages, you only need to upload the image to the default locale. The image will automatically display across all available locales.</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>Image alt text</strong> - specify an alt text for the recipe image.</p>
+
+    <blockquote class="note">
+      <p>If your online store supports multiple languages, you must specify the <strong>Image alt text</strong> in each of those languages.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><a name="4"></a></p>
+<h3 id="recipe-details">Recipe details</h3>
+
+<p>This section includes the following fields:</p>
+
+<ul>
+  <li>
+    <p><strong>Published date</strong> - specify the date the recipe was first published in your service. This is a required field.</p>
+  </li>
+  <li>
+    <p><strong>Number of servings</strong> - specify the number of servings in the recipe.</p>
+  </li>
+  <li>
+    <p><strong>Calories per serving</strong> - specify the number of calories in one serving of the recipe.</p>
+  </li>
+  <li>
+    <p><strong>Preparation time (minutes)</strong> - specify the time required to prepare the ingredients.</p>
+  </li>
+  <li>
+    <p><strong>Cooking time (minutes)</strong> - specify the time required to cook the recipe.</p>
+  </li>
+  <li>
+    <p><strong>Total time (minutes)</strong> - specify the total time required to prepare and cook the recipe. This is a required field.</p>
+  </li>
+  <li>
+    <p><strong>Author</strong> - specify the author of the recipe. This may be the name of the person or organization that authored the recipe. This is a required field.</p>
+
+    <blockquote class="note">
+      <p>You can either create a new author for your recipe or link an existing author that you have created before.</p>
+    </blockquote>
+
+    <p>To create a new author, see <a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-author">Author</a>.</p>
+
+    <p>To link an existing author to your recipe:</p>
+
+    <ol>
+      <li>In <strong>Author</strong> field, click <strong>+ Add content</strong> and then select <strong>Add existing content</strong>.</li>
+      <li>Select the required author from the list.</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>Ingredients</strong> - specify the list of ingredients required to complete the recipe. This is a required field.</p>
+
+    <blockquote class="note">
+      <p>Before you can specify the list of ingredients, make sure you have the entries for all units of measurement that your recipe requires available in Contentful. See <a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-uom">Create a Unit of measurement entry</a> for more information.</p>
+    </blockquote>
+
+    <p>To add an ingredient:</p>
+
+    <ol>
+      <li>In the <strong>Ingredients</strong> field, click <strong>+ Add ingredient</strong>.</li>
+      <li>
+        <p>Specify the <strong>Quantity</strong> of the ingredient required for the recipe. For example, 1.5, 10, or 500.</p>
+
+        <p>This is an optional field and is tagged as <strong>@quantity</strong>.</p>
+      </li>
+      <li>
+        <p>Select the <strong>Unit of measurement</strong> that the ingredient’s quantity is expressed in.</p>
+
+        <p>This field is an optional field and is tagged as <strong>@uom</strong>.</p>
+      </li>
+      <li>
+        <p>Add the ingredient, either as a free-form text, for example, ‘a pinch of salt’, or by using the <strong>@quantity</strong> and <strong>@uom</strong> tags before the ingredient. For example, to show ‘2kg flour’, type ‘@Quantity@uom flour’.</p>
+
+        <p>The <strong>Ingredient preview</strong> displays how the ingredient will show in the recipe.</p>
+      </li>
+      <li>
+        <p>To continue with a system-generated search term, click <strong>Save Ingredient</strong>. OSP will use a system-generated search term to present results to customers. <br> <br>Alternatively, you can use a custom <strong>Search term</strong> for this ingredient:</p>
+
+        <ol>
+          <li>Clear the <strong>Use generated search term</strong> checkbox.</li>
+          <li>
+            <p>Specify the search term for this ingredient. OSP uses this search term to present results to customers. This is a required field.</p>
+
+            <p>You can enter the specific product ID in this field.</p>
+          </li>
+          <li>Click <strong>Save Ingredient</strong>.</li>
+        </ol>
+
+        <blockquote class="note">
+          <p>You can see the search term, whether custom or system-generated, next to each ingredient in the list of ingredients.</p>
+        </blockquote>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>Method</strong> - specify the steps required to complete this recipe.</p>
+
+    <p>To add a <strong>simple method</strong>:</p>
+
+    <ol>
+      <li>In the <strong>Method</strong> field, click <strong>+ Add method</strong> and select <strong>Add simple method</strong>.</li>
+      <li>Enter the description of the step. This is a required field.</li>
+      <li>Click <strong>+ Add step</strong> to add a new step.</li>
+      <li>Repeat steps 2 and 3 until you have entered all steps in the recipe.</li>
+      <li>Click <strong>Save Changes</strong>.</li>
+    </ol>
+
+    <p><br>For more complex recipes, you can group steps for the different preparation processes. For example, if baking a cake, you could have separate steps for baking the sponge and making the icing.</p>
+
+    <p>To add a <strong>grouped method</strong>:</p>
+
+    <ol>
+      <li>In the <strong>Method</strong> field, click <strong>+ Add method</strong> and select <strong>Add grouped method</strong>.</li>
+      <li>Specify a <strong>Group heading</strong> for the recipe section (for example, ‘Prepare the ingredients’). This is a required field.</li>
+      <li>Enter the description of the step. This is a required field.</li>
+      <li>Click <strong>+ Add step</strong> to add a new step to the recipe.</li>
+      <li>Repeat steps 3 and 4 until you have entered all steps that belong to this grouped method.</li>
+      <li>Click <strong>Save Changes</strong>.</li>
+      <li>Repeat steps 1 through 6 to add another grouped method in the recipe.</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>Regions</strong> - specify the regions you want this recipe to be available in. If empty, the recipe is available across all regions you operate your online store in.</p>
+  </li>
+  <li>
+    <p><strong>Search terms</strong> - specify the list of terms your customers may use to search for the recipe. OSP uses these terms to tailor search results when the customer searches a recipe from the search bar on the recipes home page.</p>
+  </li>
+  <li>
+    <p><strong>Structured data category</strong> - the meal type or the course that your recipe reflects, for example, ‘dinner’, ‘dessert’.</p>
+
+    <blockquote class="note">
+      <p>You can either create a new or link an existing structured data category for your recipe.</p>
+    </blockquote>
+
+    <p>To create a new structured data category, see <a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-sdc">Structured data category</a>.</p>
+
+    <p>To link an existing structured data category to your recipe:</p>
+
+    <ol>
+      <li>In <strong>Structured data category</strong> field, click <strong>+ Add content</strong> and then select <strong>Add existing content</strong>.</li>
+      <li>Select the required structured data category from the list.</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>Structured data keywords</strong> - specify other terms that you want to link to the recipe, for example, ‘summer’, ‘halloween’, or ‘quick’, ‘easy’. Search engines like Google use these terms to tailor search results when the customer searches for a recipe on the internet.</p>
+  </li>
+</ul>
+
+<p><a name="5"></a></p>
+<h3 id="seo">SEO</h3>
+
+<p>Use this section to make your recipe findable by the search engines.</p>
+
+<p>This section includes the following fields:</p>
+
+<ul>
+  <li>
+    <p><strong>SEO: No index?</strong> - select whether you would like to index the recipe. Indexed recipes appear in the Google search results. Select ‘False’ to index the recipe.</p>
+  </li>
+  <li>
+    <p><strong>SEO: Canonical URL</strong> - specify the canonical URL for the recipe. If multiple URLs are used to access this recipe, the canonical URL is the one crawled by Google and other search engines.</p>
+  </li>
+  <li>
+    <p><strong>SEO: Meta title</strong> - specify the page title that displays in the browser’s title bar or in the page’s tab. If empty, the ‘Recipe title tag rule’ is used.</p>
+
+    <p>See ‘Recipe title tag rule’ in <a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-seo">SEO settings</a> for more information.</p>
+  </li>
+  <li>
+    <p><strong>SEO: Meta description</strong> - specify a short description for the recipe page that displays in search results. If empty, the ‘Recipe description tag rule’ is used.</p>
+
+    <p>See ‘Recipe description tag rule’ in <a href="https://help.abundo.osp.tech/en-us/help/contentful/recipes/recipe-seo">SEO settings</a> for more information.</p>
+  </li>
+  <li>
+    <p><strong>SEO: Meta keywords</strong> - specify the list of keywords to give legacy search engines more information about the content of this recipe details page.</p>
+  </li>
+</ul>
+
+<p><a name="6"></a></p>
+<h3 id="retailer-content-id">Retailer content ID</h3>
+
+<p>Use this section if you edit and add recipe content through the OSP APIs:</p>
+
+<ul>
+  <li><strong>Retailer content ID</strong> - enter an ID to identify this entry when using the <a href="https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/">Recipes API</a>.</li>
+</ul>
+
+                        
+
+                        <!-- Show related links section if present -->
+
+                        
+
+                        
+
+                        <!-- Show feed table if present -->
+                        
+
+
+                        <!-- Show swagger file if present -->
+                        
+
+
+                        
+
+                        
+                    </div>
+
+                    <hr style="margin-top: 3rem">
+<div ub-in-page="60fa8287da240525713cec1a"><iframe width="100%" height="72" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="./Recipe details_files/36b0e3517b7f77777dd1d6c30eaa0522724c124d.html" style="margin: 0px; padding: 0px; border: 0px; overflow: hidden; background-color: transparent;"></iframe></div>
+
+                </div>
+            </div>
+
+            <!-- Post Content
+            ============================================= -->
+            <div class="postcontent nobottommargin col_last clearfix">
+
+                <div class="single-post nobottommargin">
+
+                    <!-- Single Post
+                    ============================================= -->
+                    <div class="entry clearfix">
+
+                        <!-- Entry Title
+                        ============================================= -->
+                        <div class="entry-title">
+
+
+                        </div><!-- .entry-title end -->
+
+                        <!-- Mobile also in this section
+                        ============================================= -->
+
+                        <!-- Entry Content
+                        ============================================= -->
+
+
+                    </div><!-- .entry end -->
+                </div>
+            </div><!-- .postcontent end -->
+            <div class="sidebar nobottommargin clearfix">
+            </div>
+        </div>
+    </div>
+</section><!-- #content end -->
+
+
+
+    </div><!-- content wrapper -->
+
+<!-- Footer
+    ============================================= -->
+    <footer id="footer" class="fs-unmask dark">
+      <!-- Copyrights
+      ============================================= -->
+      <div id="copyrights">
+
+        <div class="container clearfix">
+
+          <div class="col_half">
+            © 2025 Ocado Technology | OSP Help &amp; Learning Center
+ | Version
+ <span class="version">0.4.5164</span>
+
+          </div>
+
+          <div class="col_half col_last tright">
+            <div class="fright clearfix">
+              <div class="copyrights-menu copyright-links nobottommargin">
+                <a href="https://help.abundo.osp.tech/en-us/help/">Help topics
+</a>/<a href="https://help.abundo.osp.tech/en-us/explainers/">OSP Explained
+</a>/<a href="https://help.abundo.osp.tech/en-us/developer/">Developers
+</a>/<a href="https://help.abundo.osp.tech/en-us/policies/">Policies
+</a>/<a href="https://help.abundo.osp.tech/en-us/release-notes/">Release notes
+</a>/<a href="https://help.abundo.osp.tech/en-us/support/">Support
+</a><br><br>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- #copyrights end -->
+
+    </footer><!-- #footer end -->
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="fs-unmask icon-angle-up" style="display: none;"></div>
+
+    <div class="osp-preview-branch-cookie"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="./Recipe details_files/plugins.js"></script>
+    <script type="text/javascript" src="./Recipe details_files/user-info-loader.js"></script>
+    <script type="text/javascript" src="./Recipe details_files/configuration-loader.js"></script>
+    <script type="text/javascript" src="./Recipe details_files/language-switcher.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="./Recipe details_files/functions.js"></script>
+    <script type="text/javascript" src="./Recipe details_files/url-utils.js"></script>
+    <script type="text/javascript" src="./Recipe details_files/content-config.js"></script>
+    <script type="text/javascript" src="./Recipe details_files/searchForwarder.js"></script>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#side-navigation").tabs({show: {effect: "fade", duration: 400}});
+    });
+</script>
+    <script type="text/javascript">
+      $(function() {
+        $( "#side-navigation" ).tabs({ show: { effect: "fade", duration: 400 } });
+      });
+    </script>
+
+    <!-- Load DataTables js if this is page has a datafeed table -->
+    
+
+<!-- Load 'copy to clipboard' script -->
+
+
+
+<!-- Load highlightjs syntax highlighter -->
+<script src="./Recipe details_files/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- On This Page minitoc JavaScript
+    ================================================== -->
+    
+
+    <script src="./Recipe details_files/toc.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('#toc').toc();
+      });
+    </script>
+
+
+    
+
+    <!-- On This Page minitoc JavaScript
+    ================================================== -->
+    
+
+        <!-- On This Page minitoc JavaScript
+    ================================================== -->
+    
+
+
+    <!-- Show info that user has been redirected to english version -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (urlUtils.getParam('redirectFrom')) {
+                onlinehelp.configLoader.done(function(config) {
+                    $('#snackbar').text(urlUtils.getFallbackMessage(config.languages, config.defaultLanguage));
+                    var x = document.getElementById("snackbar");
+
+                    x.className = "show";
+
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 6000);
+                });
+            }
+        });
+    </script>
+
+    
+    <!-- Position the page TOC above the first heading 2
+    ================================================== -->
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('<div id="toc"></div>').insertBefore("#content h2:first-of-type");
+        $('#toc').toc();
+      });
+    </script>
+    
+
+    <!-- Load Google Analytics --->
+    <script type="text/javascript">
+        let gaId = getCookie("google-analytics-id");
+        if (!gaId) {
+            $.get('/api/v1/properties/googleAnalyticsAccountId', '', function (data) {
+                gaId = data;
+                console.log(`Received GA4 id: ${gaId}`)
+                createCookie("google-analytics-id", gaId, 1);
+            }).fail(function () {
+                console.log("Failed to receive GA4 id");
+            });
+        }
+        else {
+            console.log(`Found GA4 id in cookie: ${gaId}`);
+        }
+
+        const gaScript = document.createElement('script');
+        gaScript.type = 'text/javascript';
+        gaScript.async = true;
+        gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        document.getElementsByTagName('head')[0].appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+    </script>
+
+    <!-- Fullstory -->
+    <script>
+        window['_fs_debug'] = false;
+        window['_fs_host'] = 'fullstory.com';
+        window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+        window['_fs_org'] = 'YBZW3';
+        window['_fs_namespace'] = 'FS';
+        (function(m,n,e,t,l,o,g,y){
+            if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+            g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+            o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;
+            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+            g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+            g.anonymize=function(){g.identify(!!0)};
+            g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+            g.log = function(a,b){g("log",[a,b])};
+            g.consent=function(a){g("consent",!arguments.length||a)};
+            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+            g.clearUserCookie=function(){};
+            g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
+            if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
+            g._v="1.2.0";
+        })(window,document,window['_fs_namespace'],'script','user');
+    </script>
+
+<!--    React components-->
+    <script src="./Recipe details_files/bundle.js"></script>
+
+    <!-- begin usabilla live embed code -->
+    <script type="text/javascript">window.lightningjs||function(n){var e="lightningjs";function t(e,t){var r,i,a,o,d,c;return t&&(t+=(/\?/.test(t)?"&":"?")+"lv=1"),n[e]||(r=window,i=document,a=e,o=i.location.protocol,d="load",c=0,function(){n[a]=function(){var t=arguments,i=this,o=++c,d=i&&i!=r&&i.id||0;function s(){return s.id=o,n[a].apply(s,arguments)}return(e.s=e.s||[]).push([o,d,t]),s.then=function(n,t,r){var i=e.fh[o]=e.fh[o]||[],a=e.eh[o]=e.eh[o]||[],d=e.ph[o]=e.ph[o]||[];return n&&i.push(n),t&&a.push(t),r&&d.push(r),s},s};var e=n[a]._={};function s(){e.P(d),e.w=1,n[a]("_load")}e.fh={},e.eh={},e.ph={},e.l=t?t.replace(/^\/\//,("https:"==o?o:"http:")+"//"):t,e.p={0:+new Date},e.P=function(n){e.p[n]=new Date-e.p[0]},e.w&&s(),r.addEventListener?r.addEventListener(d,s,!1):r.attachEvent("onload",s);var l=function(){function n(){return["<!DOCTYPE ",o,"><",o,"><head></head><",t,"><",r,' src="',e.l,'"></',r,"></",t,"></",o,">"].join("")}var t="body",r="script",o="html",d=i[t];if(!d)return setTimeout(l,100);e.P(1);var c,s=i.createElement("div"),h=s.appendChild(i.createElement("div")),u=i.createElement("iframe");s.style.display="none",d.insertBefore(s,d.firstChild).id="lightningjs-"+a,u.frameBorder="0",u.id="lightningjs-frame-"+a,/MSIE[ ]+6/.test(navigator.userAgent)&&(u.src="javascript:false"),u.allowTransparency="true",h.appendChild(u);try{u.contentWindow.document.open()}catch(n){e.domain=i.domain,c="javascript:var d=document.open();d.domain='"+i.domain+"';",u.src=c+"void(0);"}try{var p=u.contentWindow.document;p.write(n()),p.close()}catch(e){u.src=c+'d.write("'+n().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}e.P(2)};e.l&&l()}()),n[e].lv="1",n[e]}var r=window.lightningjs=t(e);r.require=t,r.modules=n}({});window.usabilla_live = lightningjs.require("usabilla_live", "//w.usabilla.com/4e6ba424f097.js");</script>
+    <script>/*{literal}<![CDATA[*/window.usabilla||function(){var a=window,d=a.document,c={},f=d.createElement("div"),h=!1,a=a.usabilla=function(){(c.a=c.a||[]).push(arguments)};a._=c;c.ids={};f.style.display="none";(function(){if(!d.body)return setTimeout(arguments.callee,100);d.body.insertBefore(f,d.body.firstChild).id="usabilla";h=!0})();a.load=function(a,g,k){if(!c.ids[g]){var e=c.ids={};e.url="//"+a+"/"+g+".js?s1";e.config=k;setTimeout(function(){if(!h)return setTimeout(arguments.callee,100);var b=d.createElement("iframe"),a;b.id="usabilla-"+g;/MSIE[ ]+6/.test(navigator.userAgent)&&(b.src="javascript:false");f.appendChild(b);try{b.contentWindow.document.open()}catch(c){e.domain=d.domain,a="javascript:var d=document.open();d.domain='"+e.domain+"';",b.src=a+"void(0);"}try{var l=b.contentWindow.document;l.write(["<!DOCTYPE html><html><head></head><body onload=\"var d = document;d.getElementsByTagName('head')[0].appendChild(d.createElement('script')).src='",e.url,"'\"></body></html>"].join(""));l.close()}catch(m){b.src=a+'d.write("'+loaderHtml().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}b.contentWindow.config=k;b.contentWindow.SCRIPT_ID=g},0)}}}();
+    window.usabilla.load("w.usabilla.com", "6cf187e194da");
+    /*]]>{/literal}*/</script>
+    <!-- end usabilla live embed code -->
+
+  
+
+
+
+<div class="usabilla_live_button_container" id="usabilla_live_button_container_644769486" role="button" tabindex="0" aria-label="Usabilla Feedback Button"><style type="text/css" nonce="">div.usabilla_live_button_container#usabilla_live_button_container_644769486[role="button"] {position:fixed;z-index:999;right:0;top:70%;margin-top:-83px;width:40px;height:166px}</style><iframe src="./Recipe details_files/saved_resource(2).html" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" data-tags="right" title="Usabilla Feedback Button" class="usabilla-live-button" id="usabilla_live_button_container_iframe32642354"></iframe></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

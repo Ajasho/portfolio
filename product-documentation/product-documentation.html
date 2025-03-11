@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Documentation Samples</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        h1 {
+            color: #2575fc;
+        }
+        
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .links a {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Keep text color */
+            display: flex; /* Makes the <a> tag behave like a block */
+        }
+
+
+
+        .link-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+
+        /* Hover effect: Lift the card and change background */
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: #f0f0f0; /* Light grey hover */
+        }
+
+        /* Click (Active) effect: Slightly shrink the card */
+        .link-card:active {
+            transform: scale(0.98); /* Small shrink effect */
+            background-color: #e0e0e0; /* Slightly darker grey */
+        }
+
+
+        .link-card h3 {
+            font-size: 1.6em;
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+        .link-card p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .link-card a {
+            color: #6a11cb;
+            font-size: 1.2em;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .link-card a:hover {
+            color: #2575fc;
+        }
+
+        .back {
+            margin-top: 20px;
+            display: block;
+            font-size: 1.2em;
+            color: #ff4081;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Product Documentation Samples</h1>
+        <div class="links">
+
+            <a href="search-in-the-online-store.html">
+                <div class="link-card">
+                    <h3>Search functionality</h3>
+                    <p>Learn about the search functionality in the online store.</p>
+                </div>
+            </a>
+        
+            <a href="product-cards.html">
+                <div class="link-card">
+                    <h3>Product cards</h3>
+                    <p>Learn about the product cards.</p>
+                </div>
+            </a>
+        
+            <a href="product-details-pages.html">
+                <div class="link-card">
+                    <h3>Product details pages</h3>
+                    <p>Learn about the product details pages.</p>
+                </div>
+            </a>
+
+            <a href="contextual-product-recommendations.html">
+                <div class="link-card">
+                    <h3>Contextual product recommendations</h3>
+                    <p>Learn about contextual product recommendations.</p>
+                </div>
+            </a>
+
+            <a href="account-settings.html">
+                <div class="link-card">
+                    <h3>Account settings</h3>
+                    <p>Learn about the account settings in your online store.</p>
+                </div>
+            </a>
+
+
+        </div>
+
+        
+        <a href="index.html" class="back">← Back to Home</a>
+    </div>
+
+</body>
+</html>
