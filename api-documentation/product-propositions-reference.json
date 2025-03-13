@@ -1,0 +1,1768 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Product Propositions",
+    "description" : "Use the Product Propositions resource to upload and manage the customer-facing details of the products you sell.\n\nThe information referenced here is used in the online store and includes the description, images, product information details, the listing dates, and whether the product relates to any restriction groups.\n\nProduct propositions are retail banner and region-specific, but they reference the same basic product created with the Products resource. You can upload product propositions for a single region, or multiple regions.\n\nProduct proposition details are not made visible to customers until a new product catalog is generated.\n\nYou can also use product proposition overrides to change one or more attributes of a product. Overrides are the highest priority in the display hierarchy with the original Product proposition treated as a default layer.\n\nFor example, if the original product proposition is updated for a store, any values contained within the proposition override are still used in the online store.\n\nIt may take up to 2 hours for changes to age restriction to be realized in OSP. Because product data is fixed for an order just before finalization, this data must be updated before the finalization time to affect customer verification at the time of delivery or collection. If you require an urgent update to data, please raise a service desk ticket.",
+    "version" : "v4"
+  },
+  "paths" : {
+    "/v4/{retailerBannerId}/effective-product-propositions" : {
+      "post" : {
+        "summary" : "List product propositions with any overrides applied",
+        "description" : "Use this endpoint to list the product proposition details with any overrides applied, based on the list of your product IDs provided in the request body.",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : "Your unique identifier for the region.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RetailerProductIds"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "maxItems" : 1000,
+                  "minItems" : 1,
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/EffectiveProductPropositionBulkResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "CC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2601 - Region not found or not provided,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "CC-0102 - Concurrent modification of the same entity detected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "CC-012 - Unsupported media type",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-osp-service-account-role" : {
+          "id" : "ws_products",
+          "name" : "(WS) Products",
+          "description" : "Control product details"
+        },
+        "x-codegen-request-body-name" : "RetailerProductIds"
+      }
+    },
+    "/v4/{retailerBannerId}/product-propositions" : {
+      "get" : {
+        "summary" : "Get a summary of all product propositions ",
+        "description" : "Use this endpoint to get a summary of product propositions for a specific retail banner. ",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : "Your unique identifier for the region.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "The position in the response you're looking for.\n\nFor the first page, leave the `pageToken` value empty. For the next pages, take the `pageToken` from the metadata of the previous response.",
+          "required" : false,
+          "schema" : {
+            "pattern" : "^(?:[A-Za-z0-9+]{4})*(?:[A-Za-z0-9+]{2}==|[A-Za-z0-9+]{3}=)?$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "maxPageSize",
+          "in" : "query",
+          "description" : "The maximum number of results to return in the response.\n\nYou can return up to 100 results. If you don't provide a `maxPageSize`, the default value of 20 is used.",
+          "required" : false,
+          "schema" : {
+            "maximum" : 100,
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageOfProductPropositionPaginationView"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "CC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2601 - Region not found or not provided,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-osp-service-account-role" : {
+          "id" : "ws_products",
+          "name" : "(WS) Products",
+          "description" : "Control product details"
+        }
+      }
+    },
+    "/v4/{retailerBannerId}/products/{retailerProductId}/proposition-overrides" : {
+      "get" : {
+        "summary" : "Get the product proposition overrides for a product",
+        "description" : "Use this endpoint to get the product proposition overrides for a specific product.",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerProductId",
+          "in" : "path",
+          "description" : "Your unique identifier for the product.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : "Your unique identifier for the region.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductPropositionOverride"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "ASMT-0042 - Proposition override for product with given ID '{retailerProductId}' does not exist,\nCC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner,\nCC-2601 - Region not found or not provided",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-osp-service-account-role" : {
+          "id" : "ws_products",
+          "name" : "(WS) Products",
+          "description" : "Control product details"
+        }
+      },
+      "put" : {
+        "summary" : "Create or update product proposition overrides for a product",
+        "description" : "You can use this endpoint to override one or more product proposition attributes for a product.\n\nWhen overriding the product proposition details, consider the following rules:\n\n* The attribute's new values replace the original ones, not merge with them. For example, if the `tags` array with [\"refrigerated\", \"local\"] is overridden with [\"vegan\"], the result of the override is [\"vegan\"].\n\n* To override values in an array, you must provide the entire set of values that constitute the array. For example, if the `detailedInformation` array includes five objects, and you want to add a new object, provide a total of six objects. To remove an object, provide four objects, removing the one you no longer need.\nTo override an object, provide the entire set of values that constitute the object.\n\n* You don't need to provide the entire set of product proposition details. This means that if you want to override only `listedDates`, then in the request, provide the array with the listing dates, but exclude tags, deposits, or other details that are not changing. Any data that is not altered by an override will use the values from the original product proposition by default.\n\n* In the override request, provide either `media` or `localizedMedia` but not both.\n",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : " Your unique identifier for the retail banner.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerProductId",
+          "in" : "path",
+          "description" : " Your unique identifier for the product you're defining an override for. \n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : " Your unique identifier for the region the proposition overrides can be created of changed for. \n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductPropositionOverride"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductPropositionOverride"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "ASMT-0063 - One or more images referenced by retailerDetailedImageIds has the wrong imageType, image must be of imageType DETAIL,\nASMT-0004 - Seller with provided ID does not exist,\nASMT-0044 - Attributes with given IDs [%s] cannot be found,\nASMT-0014 - Product quantity restriction group with given ID does not exist,\nASMT-0023 - Duplicate translations detected for some languages,\nASMT-0015 - Product age restriction group with given ID does not exist,\nASMT-0034 - A product deposit with the given ID cannot be found,\nASMT-0021 - Missing translations for some languages defined for the platform,\nASMT-0019 - Illegal HTML tags found in detailed information,\nASMT-0039 - Primary image ID not listed in the image declarations,\nASMT-0027 - Product time-of-day restriction group with given ID does not exist,\nASMT-0022 - Quantity restriction group unit of measure is incompatible with product proposition unit of measure,\nCC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "ASMT-0041 - Images with given IDs [%s] cannot be found,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner,\nCC-2601 - Region not found or not provided",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "CC-0102 - Concurrent modification of the same entity detected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "CC-012 - Unsupported media type",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name" : "ProductPropositionOverride"
+      },
+      "delete" : {
+        "summary" : "Remove all proposition overrides ",
+        "description" : "Use this endpoint to remove all proposition overrides for a product, so the values return to the original product proposition values. ",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerProductId",
+          "in" : "path",
+          "description" : "Your unique identifier for the product.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : "Your unique identifier for the region.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "",
+            "content" : { }
+          },
+          "400" : {
+            "description" : "CC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2601 - Region not found or not provided,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "CC-0102 - Concurrent modification of the same entity detected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-osp-service-account-role" : {
+          "id" : "ws_products",
+          "name" : "(WS) Products",
+          "description" : "Control product details"
+        }
+      }
+    },
+    "/v4/{retailerBannerId}/products/{retailerProductId}/propositions" : {
+      "get" : {
+        "summary" : "Get the base proposition for a product",
+        "description" : "Use this endpoint to get the base proposition for a specific product. ",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.\n",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerProductId",
+          "in" : "path",
+          "description" : "Your unique identifier for the product.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : "Your unique identifier for the region.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductProposition"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "CC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2601 - Region not found or not provided,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-osp-service-account-role" : {
+          "id" : "ws_products",
+          "name" : "(WS) Products",
+          "description" : "Control product details"
+        }
+      },
+      "put" : {
+        "summary" : "Create or update a base product proposition",
+        "description" : "Use this endpoint to create or update a base proposition for a product.",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerProductId",
+          "in" : "path",
+          "description" : "Your unique identifier for the product you're defining a proposition for.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRegionId",
+          "in" : "query",
+          "description" : "Your unique identifier for the region the proposition details can be created or changed for. ",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductProposition"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductProposition"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "ASMT-0063 - One or more images referenced by retailerDetailedImageIds has the wrong imageType, image must be of imageType DETAIL,\nASMT-0004 - Seller with provided ID does not exist,\nASMT-0044 - Attributes with given IDs [%s] cannot be found,\nASMT-0015 - Product age restriction group with given ID does not exist,\nASMT-0034 - A product deposit with the given ID cannot be found,\nASMT-0023 - Duplicate translations detected for some languages,\nASMT-0039 - Primary image ID not listed in the image declarations,\nASMT-0022 - Quantity restriction group unit of measure is incompatible with product proposition unit of measure,\nASMT-0014 - Product quantity restriction group with given ID does not exist,\nASMT-0027 - Product time-of-day restriction group with given ID does not exist,\nASMT-0021 - Missing translations for some languages defined for the platform,\nASMT-0019 - Illegal HTML tags found in detailed information,\nCC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "ASMT-0041 - Images with given IDs [%s] cannot be found,\nCC-2601 - Region not found or not provided,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "CC-0102 - Concurrent modification of the same entity detected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "CC-012 - Unsupported media type",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name" : "ProductProposition"
+      },
+      "post" : {
+        "summary" : "Generate a product proposition for a product in multiple regions",
+        "description" : "Use this endpoint to generate a product proposition for a specific product in a list of regions. \n\nRegions are specified through `retailerRegionIds` in the request body.\n",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerProductId",
+          "in" : "path",
+          "description" : "Your unique identifier for the product.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductPropositionBulkRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : { }
+          },
+          "400" : {
+            "description" : "ASMT-0063 - One or more images referenced by retailerDetailedImageIds has the wrong imageType, image must be of imageType DETAIL,\nASMT-0004 - Seller with provided ID does not exist,\nASMT-0044 - Attributes with given IDs [%s] cannot be found,\nASMT-0034 - A product deposit with the given ID cannot be found,\nASMT-0023 - Duplicate translations detected for some languages,\nASMT-0027 - Product time-of-day restriction group with given ID does not exist,\nASMT-0022 - Quantity restriction group unit of measure is incompatible with product proposition unit of measure,\nASMT-0039 - Primary image ID not listed in the image declarations,\nASMT-0014 - Product quantity restriction group with given ID does not exist,\nASMT-0021 - Missing translations for some languages defined for the platform,\nASMT-0019 - Illegal HTML tags found in detailed information,\nCC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "ASMT-0041 - Images with given IDs [%s] cannot be found,\nCC-2601 - Region not found or not provided,\nCC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "CC-0102 - Concurrent modification of the same entity detected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "CC-012 - Unsupported media type",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name" : "ProductPropositionBulkRequest"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CountryOfOrigin" : {
+        "required" : [ "description" ],
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The country name, for each locale that your online store supports.",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "isoCode" : {
+            "pattern" : "^[A-Z]{2}$",
+            "type" : "string",
+            "description" : "The two-letter ISO 3166-1 alpha-2 region code."
+          }
+        },
+        "description" : ""
+      },
+      "DepositReference" : {
+        "required" : [ "quantity", "retailerProductDepositId" ],
+        "type" : "object",
+        "properties" : {
+          "retailerProductDepositId" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string",
+            "description" : "Your unique identifier for the product deposit."
+          },
+          "quantity" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The number of deposits that are applied.",
+            "format" : "int32",
+            "example" : 2
+          }
+        },
+        "description" : ""
+      },
+      "DetailedInformationElement" : {
+        "required" : [ "name", "value" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "The name of the detailed information."
+          },
+          "value" : {
+            "type" : "array",
+            "description" : "The detailed information about the product. ",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "EffectiveProductPropositionBulkResponse" : {
+        "required" : [ "retailerProductId" ],
+        "type" : "object",
+        "properties" : {
+          "productProposition" : {
+            "description" : "The details of product proposition. `Null` is returned when `productProposition` is not found.",
+            "$ref" : "#/components/schemas/ProductProposition"
+          },
+          "retailerProductId" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string",
+            "description" : "Your unique identifier for the product."
+          }
+        },
+        "description" : ""
+      },
+      "ErrorResponse" : {
+        "required" : [ "code", "httpStatus", "message", "moreInfo", "timestamp" ],
+        "type" : "object",
+        "properties" : {
+          "timestamp" : {
+            "type" : "string",
+            "description" : "Date with time when response was generated",
+            "format" : "date-time"
+          },
+          "httpStatus" : {
+            "type" : "integer",
+            "description" : "HTTP response status code",
+            "format" : "int32",
+            "example" : 400
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Textual details about error, may contain parameters described in `args`"
+          },
+          "args" : {
+            "type" : "object",
+            "properties" : { },
+            "additionalProperties" : true,
+            "description" : "Optional values for parameters used in 'message'"
+          },
+          "code" : {
+            "pattern" : "[-A-Z0-9]+",
+            "type" : "string",
+            "description" : "Custom OSP error code"
+          },
+          "moreInfo" : {
+            "type" : "string",
+            "description" : "Link to troubleshooting page with information about the error"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Error response schema. It provides more information about reason when request fail."
+      },
+      "FlexibleUnitsOfMeasure" : {
+        "type" : "object",
+        "properties" : {
+          "packUnitDescription" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The pack unit description you want to associate with this product, for each locale that your online store supports. This will override the system-level default set for \"EACH\".",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "unitPriceDescription" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The unit price description associated with this product, for each locale that your online store supports. This will override the system-level default set for \"EACH\".",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "InternationalizedString" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "Text in the specified locale."
+          }
+        },
+        "description" : "Multi-language string."
+      },
+      "LocalizedMedia" : {
+        "required" : [ "primaryRetailerProductImageId", "retailerProductImageIds" ],
+        "type" : "object",
+        "properties" : {
+          "primaryRetailerProductImageId" : {
+            "type" : "array",
+            "description" : "Your unique identifier for the default product card image used in the online store, for each locale that your online store supports.\n\n**Note:** The images you reference must be of `PRODUCT` type in the Product Images resource.",
+            "items" : {
+              "$ref" : "#/components/schemas/LocalizedPrimaryRetailerProductImageId"
+            }
+          },
+          "retailerProductImageIds" : {
+            "type" : "array",
+            "description" : "Your unique identifiers for the images displayed on the product details page, for each locale that your online store supports.\n\n**Note:** The images you reference must be of `PRODUCT` type in the Product Images resource.",
+            "items" : {
+              "$ref" : "#/components/schemas/LocalizedRetailerProductImageIds"
+            }
+          },
+          "retailerDetailedImageIds" : {
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the images that can be used to provide detailed information about the product, for each locale that your online store supports.\n\n**Note:** The images you reference must be of `DETAIL` type in the Product Images resource.",
+            "items" : {
+              "$ref" : "#/components/schemas/LocalizedRetailerDetailedImageIds"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "LocalizedPrimaryRetailerProductImageId" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two-letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "pattern" : "^.{0,1000}$",
+            "type" : "string",
+            "description" : "The list of your unique identifiers for the images in this locale."
+          }
+        },
+        "description" : ""
+      },
+      "LocalizedRetailerDetailedImageIds" : {
+        "required" : [ "locale", "values" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter language code and two-letter region code, separated by a hyphen. For example, en-GB."
+          },
+          "values" : {
+            "maxItems" : 100,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the images in this locale.",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]{1,1024}$",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "LocalizedRetailerProductImageIds" : {
+        "required" : [ "locale", "values" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two-letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "values" : {
+            "maxItems" : 10,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the images in this locale. ",
+            "items" : {
+              "pattern" : "^.{0,1000}$",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "Media" : {
+        "required" : [ "primaryRetailerProductImageId", "retailerProductImageIds" ],
+        "type" : "object",
+        "properties" : {
+          "primaryRetailerProductImageId" : {
+            "pattern" : "^.{0,1000}$",
+            "type" : "string",
+            "description" : "Your unique identifier for the default image for a product used in the online store. \n\n**Note:** The images you reference must be of `PRODUCT` type in the Product Images resource."
+          },
+          "retailerProductImageIds" : {
+            "maxItems" : 10,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the images that can be used in the online store for a product.\n\n**Note:** The images you reference must be of `PRODUCT` type in the Product Images resource.",
+            "items" : {
+              "pattern" : "^.{0,1000}$",
+              "type" : "string"
+            }
+          },
+          "retailerDetailedImageIds" : {
+            "maxItems" : 100,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the images that can be used to provide detailed information about the product.\n\n**Note:** The images you reference must be of `DETAIL` type in the Product Images resource.",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]{1,1024}$",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "PageMetadata" : {
+        "required" : [ "maxPageSize" ],
+        "type" : "object",
+        "properties" : {
+          "nextPageToken" : {
+            "type" : "string",
+            "description" : "Token which can be used as query parameter to retrieve the next page."
+          },
+          "pageToken" : {
+            "type" : "string",
+            "description" : "Token used in request query parameter."
+          },
+          "maxPageSize" : {
+            "type" : "integer",
+            "description" : "Maximal page size which was used in request query parameter or default if none was used",
+            "format" : "int32",
+            "example" : 10
+          }
+        },
+        "description" : "Metadata used for page schemas. It provides information about used query parameters and token for a next page."
+      },
+      "PageOfProductPropositionPaginationView" : {
+        "required" : [ "content", "metadata" ],
+        "type" : "object",
+        "properties" : {
+          "content" : {
+            "type" : "array",
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductPropositionPaginationView"
+            }
+          },
+          "metadata" : {
+            "description" : "",
+            "$ref" : "#/components/schemas/PageMetadata"
+          }
+        },
+        "description" : ""
+      },
+      "PeriodUnbound" : {
+        "type" : "object",
+        "properties" : {
+          "from" : {
+            "type" : "string",
+            "description" : "The date and time the product is listed from, specified in ISO 8601 UTC date/time format. The time is inclusive.",
+            "format" : "date-time"
+          },
+          "to" : {
+            "type" : "string",
+            "description" : "The date and time the product is listed to, specified in ISO 8601 UTC date/time format. The time is exclusive.",
+            "format" : "date-time"
+          }
+        },
+        "description" : ""
+      },
+      "ProductProposition" : {
+        "required" : [ "deposits", "description", "detailedInformation", "listingDates", "restrictions", "tags" ],
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The title of the product, as used on category or search results pages in the online store.\n\n**Note:** If you operate your OSP in multiple languages, provide the description for each locale that your online store supports.",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "media" : {
+            "description" : "The image or images used to illustrate the product in the online store.\n\n**Notes:**\n\n* Either `localizedMedia` or `media` must be present, but not both.\n* The `primaryRetailerProductImageId` must be included in the `retailerProductImageIds`.\n* The images are kept in the same order as they were sent.",
+            "$ref" : "#/components/schemas/Media"
+          },
+          "localizedMedia" : {
+            "description" : "The locale-specific images used to illustrate the product in the online store.\n\n**Notes:**\n\n* Either `localizedMedia` or `media` must be present, but not both.\n* For each locale, the `primaryRetailerProductImageId` must be included in the `retailerProductImageIds`.\n* If you operate your OSP in multiple languages, the `localizedMedia` locale-value pair must be present in each language.\n* The images are kept in the same order as they are sent.",
+            "$ref" : "#/components/schemas/LocalizedMedia"
+          },
+          "restrictions" : {
+            "description" : "References to any age, quantity, or Time-of-Day restriction groups that the product is associated with. ",
+            "$ref" : "#/components/schemas/Restrictions"
+          },
+          "listingDates" : {
+            "maxItems" : 10,
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "The list of date ranges when the product is available in the online store. \n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/PeriodUnbound"
+            }
+          },
+          "detailedInformation" : {
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "Additional and extended details about the product, as shown on the product details page in the online store.\n\n**Notes:**\n\n* The extended product details can be displayed under different sections of the product details page, such as *Product information*, *Dietary information*, or *Nutritional data*.\n* If you upload HTML content in the `value` attribute of `detailedInformation`, ensure that the HTML content follows the Web Content Accessibility Guidelines (WCAG) and is accessible to people with disabilities.\n* If you operate your OSP in multiple languages, the `detailedInformation` locale-value pair must be present in each language.",
+            "items" : {
+              "$ref" : "#/components/schemas/DetailedInformationElement"
+            }
+          },
+          "tags" : {
+            "type" : "array",
+            "description" : "The list of tags that apply to the product, such as 'vegan'. ",
+            "items" : {
+              "pattern" : "",
+              "type" : "string"
+            }
+          },
+          "deposits" : {
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "The details of any deposits that apply to the product.\n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/DepositReference"
+            }
+          },
+          "countryOfOrigin" : {
+            "description" : "The country from which the product originates.",
+            "$ref" : "#/components/schemas/CountryOfOrigin"
+          },
+          "guaranteedProductLifeInDays" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The number of days of product life that is promised to customers for this product.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "retailerAttributeIds" : {
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the attributes associated with the product. \n\n**Note:** The order of the attributes is not preserved and duplicates are ignored.",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+              "type" : "string"
+            }
+          },
+          "flexibleUnitsOfMeasure" : {
+            "description" : "The flexible units of measure you can configure to override the system defaults set for \"EACH\" that you want to associate with this product.\n\nYou can configure both elements or only one of them. If no configuration is provided, OSP displays the localized system defaults for \"EACH\". For example, if your system's locale is set to en-GB, then these system defaults are \"per pack\" for the `packUnitDescription` and \"per item\" for the `unitPriceDescription`. If only one element is provided, it is displayed as configured, while the other one falls back to the system default.\n\n**Note:** If you include `flexibleUnitsOfMeasure` without specifying at least one of its attributes in the PUT or POST request, you will get a validation error.",
+            "$ref" : "#/components/schemas/FlexibleUnitsOfMeasure"
+          },
+          "sellerId" : {
+            "pattern" : "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "type" : "string",
+            "description" : "The unique identifier for the seller of the product."
+          }
+        },
+        "description" : ""
+      },
+      "ProductPropositionBulkRequest" : {
+        "required" : [ "productProposition", "retailerRegionIds" ],
+        "type" : "object",
+        "properties" : {
+          "retailerRegionIds" : {
+            "maxItems" : 1000,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the regions you want to generate the product propositions in. ",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]+$",
+              "type" : "string"
+            }
+          },
+          "productProposition" : {
+            "description" : "",
+            "$ref" : "#/components/schemas/ProductProposition"
+          }
+        },
+        "description" : ""
+      },
+      "ProductPropositionOverride" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The title of the product, as used on category or search results pages in the online store.\n\n**Note:** If you operate your OSP in multiple languages, you must provide the `description` locale-value pair in each language.\n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "media" : {
+            "description" : "The image or images used to illustrate the product in the online store.\n\n**Notes:**\n\n* Either `localizedMedia` or `media` must be present, but not both.\n* The `primaryRetailerProductImageId` must be included in the `retailerProductImageIds`.\n* The images are kept in the same order as they were sent.",
+            "$ref" : "#/components/schemas/Media"
+          },
+          "localizedMedia" : {
+            "description" : "The locale-specific image or images used to illustrate the product in the online store.\n\n**Notes:**\n\n* Either `localizedMedia` or `media` must be present, but not both.\n* For each locale, the `primaryRetailerProductImageId` must be included in the `retailerProductImageIds`.\n* If you operate your OSP in multiple languages, the `localizedMedia` locale-value pair must be present in each language.\n* The images are kept in the same order as they were sent.",
+            "$ref" : "#/components/schemas/LocalizedMedia"
+          },
+          "restrictions" : {
+            "description" : "References to any age, quantity, or Time-of-Day restriction groups that the product is associated with.",
+            "$ref" : "#/components/schemas/Restrictions"
+          },
+          "listingDates" : {
+            "maxItems" : 10,
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "The list of date ranges when the product is listed in the online store. \n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/PeriodUnbound"
+            }
+          },
+          "detailedInformation" : {
+            "type" : "array",
+            "description" : "Additional and extended details about the product, as shown on the product details page in the online store.\n\n**Notes:**\n\n* The extended product details can be displayed under different sections of the product details page, such as *Product information*, *Dietary information*, or *Nutritional data*.\n* If you upload HTML content in the `value` attribute of `detailedInformation`, ensure that the HTML content follows the Web Content Accessibility Guidelines (WCAG) and is accessible to people with disabilities.\n* If you operate your OSP in multiple languages, the `detailedInformation` locale-value pair must be present in each language.",
+            "items" : {
+              "$ref" : "#/components/schemas/DetailedInformationElement"
+            }
+          },
+          "tags" : {
+            "type" : "array",
+            "description" : "The list of tags that apply to the product, such as 'vegan'. ",
+            "items" : {
+              "pattern" : "",
+              "type" : "string"
+            }
+          },
+          "deposits" : {
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "The details of any deposits that apply to the product.\n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/DepositReference"
+            }
+          },
+          "countryOfOrigin" : {
+            "description" : "The country from which the product originates.",
+            "$ref" : "#/components/schemas/CountryOfOrigin"
+          },
+          "guaranteedProductLifeInDays" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The number of days of product life that is promised to customers for this product.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "retailerAttributeIds" : {
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the attributes associated with the product. \n\n**Note:** The order of the attributes is not preserved and the duplicates are ignored.",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+              "type" : "string"
+            }
+          },
+          "flexibleUnitsOfMeasure" : {
+            "description" : "Defines the flexible units of measure you can configure to override the system defaults set for \"EACH\" that you want to associate with this product.\n\nYou can configure both elements, or only one of them. If no configuration is provided, OSP displays the localized system defaults for \"EACH\". For example, if your system's locale is set to en-GB, then these system defaults are \"per pack\" for the `packUnitDescription` and \"per item\" for the `unitPriceDescription`. If only one element is provided, it is displayed as configured, while the other one falls back to the system default.\n\n**Note:** If you include `flexibleUnitsOfMeasure` without specifying at least one of its attributes in the PUT or POST request, you will get a validation error.",
+            "$ref" : "#/components/schemas/FlexibleUnitsOfMeasure"
+          },
+          "sellerId" : {
+            "pattern" : "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "type" : "string",
+            "description" : "The unique identifier for the seller of the product."
+          }
+        },
+        "description" : ""
+      },
+      "ProductPropositionPaginationView" : {
+        "required" : [ "description", "listingDates", "restrictions", "retailerProductId" ],
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The title of the product, as used on category or search results pages in the online store.\n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "listingDates" : {
+            "maxItems" : 10,
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "The list of date ranges when the product is listed in the online store. \n\n",
+            "items" : {
+              "$ref" : "#/components/schemas/PeriodUnbound"
+            }
+          },
+          "restrictions" : {
+            "description" : "References to any age, quantity, or Time-of-Day restriction groups that the product is associated with.",
+            "$ref" : "#/components/schemas/Restrictions"
+          },
+          "retailerProductId" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string",
+            "description" : "Your unique identifier for the product."
+          },
+          "flexibleUnitsOfMeasure" : {
+            "description" : "Defines the flexible units of measure you can configure to override the system defaults set for \"EACH\" that you want to associate with this product.\n\nYou can configure both elements or only one of them. If no configuration is provided, OSP displays the localized system defaults for \"EACH\". For example, if your system's locale is set to en-GB, then these system defaults are \"per pack\" for the `packUnitDescription` and \"per item\" for the `unitPriceDescription`. In case only one element is provided, it is displayed as configured, while the other one falls back to the system default.\n\n**Note:** If you include the `flexibleUnitsOfMeasure` attribute without specifying at least one of its attributes in the PUT or POST request, you will get a validation error.",
+            "$ref" : "#/components/schemas/FlexibleUnitsOfMeasure"
+          }
+        },
+        "description" : ""
+      },
+      "Quantity" : {
+        "required" : [ "unit", "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "multipleOf" : 0.0001,
+            "minimum" : 0,
+            "exclusiveMinimum" : true,
+            "type" : "number",
+            "description" : "The value of the unit of measure that applies to this product.",
+            "format" : "float",
+            "example" : 1.0000
+          },
+          "unit" : {
+            "type" : "string",
+            "description" : "The unit of measure for the product. ",
+            "enum" : [ "EACH", "KG", "G", "ML", "CL", "PAIR", "L", "CC", "CM", "M", "DOSE" ]
+          }
+        },
+        "description" : ""
+      },
+      "Restrictions" : {
+        "required" : [ "excludedFromLoyalty", "illegalToPromote" ],
+        "type" : "object",
+        "properties" : {
+          "retailerAgeRestrictionGroupId" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string",
+            "description" : "Your unique identifier for the age restriction group."
+          },
+          "retailerTimeOfDayRestrictionGroupId" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string",
+            "description" : "Your unique identifier for the Time-of-Day restriction group."
+          },
+          "retailerQuantityRestrictionGroupId" : {
+            "pattern" : "^[a-zA-Z0-9-_]+$",
+            "type" : "string",
+            "description" : "Your unique identifier for the quantity restriction group."
+          },
+          "illegalToPromote" : {
+            "type" : "boolean",
+            "description" : "Indicates whether the product is illegal to promote. Such products are excluded from promotions and earning of the loyalty points. For more information, see the Loyalty Explainer."
+          },
+          "excludedFromLoyalty" : {
+            "type" : "boolean",
+            "description" : "Indicates whether the product is to be excluded from loyalty-reward promotions. Customers won't be able to earn loyalty when buying such products."
+          },
+          "usedQuantity" : {
+            "description" : "If the product is associated with a quantity restriction group, the `usedQuantity` object specifies the number of units a single product represents. ",
+            "$ref" : "#/components/schemas/Quantity"
+          },
+          "hfssDisplayRestrictionGroup " : {
+            "type" : "string",
+            "description" : "The HFSS (high in fat, sugar, and salt) display restriction group that is associated with the product. \n\nIf you specify the HFSS group, a product is not displayed on the logged-in and logged-out homepages of your online store. Additionally, if applicable, it is displayed in the **Have you run out of...? (HYRO)**, **Offers on your favorites**, **Assorted**, and **Incomplete promotions** checkout walk steps, while being filtered out on all other steps.\n\nIf you are unsure of the exact group your product belongs to, use the `RESTRICTED_WITHOUT_CATEGORY` group instead.\n\nThis optional configuration lets you comply with the HFSS legislation in England that restricts promotion of foods that are high in fat, sugar, and salt. Speak to your Ocado contact to enable it for you.",
+            "enum" : [ "RESTRICTED_WITHOUT_CATEGORY", "SOFT_DRINKS_WITH_ADDED_SUGAR", "SAVOURY_SNACKS", "BREAKFAST_CEREALS", "CONFECTIONARY", "ICE_CREAM", "CAKES", "BISCUITS", "MORNING_GOODS", "PUDDINGS", "YOGHURT", "PIZZA", "CHIPS", "READY_MEALS" ]
+          }
+        },
+        "description" : ""
+      },
+      "RetailerProductIds" : {
+        "required" : [ "retailerProductIds" ],
+        "type" : "object",
+        "properties" : {
+          "retailerProductIds" : {
+            "maxItems" : 1000,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "The list of your unique identifiers for the products.\n",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]+$",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swagger UI Preview</title>
+    <link rel="stylesheet" type="text/css" 
+          href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
+</head>
+<body>
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
+    
+    <script>
+        // Get JSON file URL from query parameter
+        function getSwaggerJsonUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("spec"); // Get ?spec= parameter
+        }
+
+        window.onload = function() {
+            const swaggerJsonUrl = getSwaggerJsonUrl();
+
+            if (!swaggerJsonUrl) {
+                document.body.innerHTML = "<h2>Error: No JSON file specified</h2>";
+                return;
+            }
+
+            SwaggerUIBundle({
+                url: swaggerJsonUrl,
+                dom_id: "#swagger-ui",
+                deepLinking: true,
+                presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+                layout: "StandaloneLayout"
+            });
+        };
+    </script>
+</body>
+</html>
