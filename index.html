@@ -78,6 +78,61 @@
         }
 
 
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            position: relative;
+        }
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #2575fc;
+            padding: 10px 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .submenu {
+            display: none;
+            padding-left: 15px;
+        }
+        .sidebar li:hover > .submenu {
+            display: block;
+        }
+        .menu-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #2575fc;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+
 
 
         /* Summary Section */
@@ -178,8 +233,41 @@
 </head>
 <body>
 
+    <div class="menu-toggle" onclick="toggleSidebar()">☰ Menu</div>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="feature-overviews/feature-overviews.html">Home</a></li>
+            <li><a href="api-documentation/api-documentation.html">Summary</a></li>
+            <li><a href="integration-guides/integration-guide.html">Documentation</a></li>
+            <li><a href="feature-overviews/feature-overviews.html">Contact</a></li>
+            <li>
+                <a href="#">Subfolder 1</a>
+                <ul class="submenu">
+                    <li><a href="#sub1-page1">Page 1</a></li>
+                    <li>
+                        <a href="#">Subfolder 1.1</a>
+                        <ul class="submenu">
+                            <li><a href="#sub1-1-page1">Page 1</a></li>
+                            <li><a href="#sub1-1-page2">Page 2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Subfolder 2</a>
+                <ul class="submenu">
+                    <li><a href="#sub2-page1">Page 1</a></li>
+                    <li><a href="#sub2-page2">Page 2</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+
     <!-- Hero Section with Image -->
     <div class="hero">
+
         <a href="mailto:ajeeshkashok@gmail.com" class="email-button">Email Me</a>
         <img src="profile-pic.jpg" alt="My profile photo">
         <h1>Ajeesh Kambalath</h1>
@@ -267,5 +355,11 @@
 
     </div>
 
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("open");
+        }
+    </script>
 </body>
 </html>
