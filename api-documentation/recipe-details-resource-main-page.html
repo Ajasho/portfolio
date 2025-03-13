@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/recipe-details/1/ -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+
+    
+    <meta name="google-site-verification" content="AzlLnJeYA7fXStALfe33QQH2PIIY2UTCGX0wrJjX_y0">
+    <meta name="author" content="Ocado Technology">
+
+    <link rel="icon" href="https://help.abundo.osp.tech/assets/images/common/color-favicon2.ico">
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="./recipe-details-resource-main-page_files/css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/online-help.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/style.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/dark.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/font-icons.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/animate.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/swiper.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/responsive.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/en-us.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/custom.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/github.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/snackbar.css" type="text/css">
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/colors-help.css" type="text/css">
+    <!--<link rel="stylesheet" href="/css/glossary/en-us-glossary.css" type="text/css"/>-->
+
+
+    
+
+    
+
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/sandbox.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="./recipe-details-resource-main-page_files/colors-developer.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Recipe Details resource</title>
+
+    <!-- Document description
+    ============================================= -->
+    <meta name="description" content="Reference documentation for the Recipe Details resource that lets you create, update, publish, and unpublish a recipe.">
+
+    <!-- jQuery
+    ============================================= -->
+    <script async="" crossorigin="anonymous" src="./recipe-details-resource-main-page_files/fs.js"></script><script type="text/javascript" src="./recipe-details-resource-main-page_files/jquery.js"></script>
+
+    <!-- Mermaid.js
+    ============================================= -->
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/mermaid.js"></script>
+  <script type="text/javascript" async="" src="./recipe-details-resource-main-page_files/js"></script><style>@keyframes spin{100%{transform:rotate(360deg)}}.Spinner{display:flex;justify-content:center}.Spinner i{animation:spin 1s linear infinite}</style><style>.breadcrumb__link-divider{padding:0 .5rem}</style><style>.search-result__title{margin-bottom:0}.search-result__container:first-child .search-result__title{border:0;margin-top:0;padding-top:0}</style><style>.search-form{display:flex;justify-content:center;margin:2rem 0 7rem}.search-form__field{background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDg1LjIxMyA0ODUuMjEzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODUuMjEzIDQ4NS4yMTM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNDcxLjg4Miw0MDcuNTY3TDM2MC41NjcsMjk2LjI0M2MtMTYuNTg2LDI1Ljc5NS0zOC41MzYsNDcuNzM0LTY0LjMzMSw2NC4zMjFsMTExLjMyNCwxMTEuMzI0ICAgIGMxNy43NzIsMTcuNzY4LDQ2LjU4NywxNy43NjgsNjQuMzIxLDBDNDg5LjY1NCw0NTQuMTQ5LDQ4OS42NTQsNDI1LjMzNCw0NzEuODgyLDQwNy41Njd6IiBmaWxsPSIjOWQ5ZDlkIi8+CgkJPHBhdGggZD0iTTM2My45MDksMTgxLjk1NUMzNjMuOTA5LDgxLjQ3MywyODIuNDQsMCwxODEuOTU2LDBDODEuNDc0LDAsMC4wMDEsODEuNDczLDAuMDAxLDE4MS45NTVzODEuNDczLDE4MS45NTEsMTgxLjk1NSwxODEuOTUxICAgIEMyODIuNDQsMzYzLjkwNiwzNjMuOTA5LDI4Mi40MzcsMzYzLjkwOSwxODEuOTU1eiBNMTgxLjk1NiwzMTguNDE2Yy03NS4yNTIsMC0xMzYuNDY1LTYxLjIwOC0xMzYuNDY1LTEzNi40NiAgICBjMC03NS4yNTIsNjEuMjEzLTEzNi40NjUsMTM2LjQ2NS0xMzYuNDY1Yzc1LjI1LDAsMTM2LjQ2OCw2MS4yMTMsMTM2LjQ2OCwxMzYuNDY1ICAgIEMzMTguNDI0LDI1Ny4yMDgsMjU3LjIwNiwzMTguNDE2LDE4MS45NTYsMzE4LjQxNnoiIGZpbGw9IiM5ZDlkOWQiLz4KCQk8cGF0aCBkPSJNNzUuODE3LDE4MS45NTVoMzAuMzIyYzAtNDEuODAzLDM0LjAxNC03NS44MTQsNzUuODE2LTc1LjgxNFY3NS44MTZDMTIzLjQzOCw3NS44MTYsNzUuODE3LDEyMy40MzcsNzUuODE3LDE4MS45NTV6IiBmaWxsPSIjOWQ5ZDlkIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);background-position:97% 50%;background-repeat:no-repeat;background-size:auto 17px;border-color:#000;border-radius:5px;box-shadow:0 18px 28px 0 rgba(0,0,0,.1)}</style><style>@keyframes spin{100%{transform:rotate(360deg)}}.search__loading{display:flex;justify-content:center;padding:50px 0}.search__loading i{animation:spin 1s linear infinite}.search__tabs{margin-bottom:2rem}</style><style>.side-nav-item>a{padding-bottom:.5rem;padding-top:.5rem}.side-nav-item.nav-item--active>a{color:#2498d4}</style><style>.side-nav-list.nav{margin-left:-14px;margin-top:-0.5rem}.side-nav-list.nav .side-nav-list{margin-left:1.2rem;margin-top:0}</style><style>.Dashboard{margin-bottom:4.5rem;padding-top:1.5rem}.Dashboard__section{border-bottom:solid 1px rgba(0,0,0,.1);margin-bottom:1.5rem;padding-bottom:1.5rem;top:1.5rem}.Dashboard__section:last-child{border-bottom:0}.Dashboard__section h1{text-align:center}.Dashboard__section .row{margin-top:3rem}.Dashboard__card h3{font-size:15px}.Dashboard__card p{font-size:15px}</style><style>.InternalToc{font-size:15px}.InternalToc::before{content:"On this page";display:block;font-size:13px;text-transform:uppercase;color:var(--gray);margin-bottom:.25rem}.InternalToc>div{margin-bottom:.25rem}.InternalToc a{color:#000;display:block}.InternalToc a:hover,.InternalToc .active>a{color:#2498d4}.InternalToc .has-indent{padding-left:1rem}</style><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style type="text/css" nonce="" media="print">.usabilla_live_button_container { display: none; }</style><style type="text/css" nonce="">iframe.usabilla-live-button#usabilla_live_button_container_iframe875750229{width:40px;height:166px;margin: 0;padding: 0;border: 0;overflow: hidden;z-index: 9998;position: absolute;left: 0;top: 0;box-shadow: 0 0 0;background-color: transparent;}</style></head>
+
+  <body class="stretched no-transition device-lg" data-new-gr-c-s-check-loaded="14.1226.0" data-gr-ext-installed=""><div id="usabilla" style="display: none;"><iframe id="usabilla-6cf187e194da" src="./recipe-details-resource-main-page_files/saved_resource.html"></iframe></div><div id="lightningjs-usabilla_live" style="display: none;"><div><iframe frameborder="0" id="lightningjs-frame-usabilla_live" src="./recipe-details-resource-main-page_files/saved_resource(1).html"></iframe></div></div>
+
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="fs-unmask clearfix">
+
+        <div id="snackbar">This page does not exist in your language version of help, you have been redirected to English version</div>
+
+        
+
+    <!-- API URL script -->
+
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/api-url.js"></script>
+
+    
+
+
+<div class="clear"></div>
+<script type="text/javascript" src="./recipe-details-resource-main-page_files/marked.min.js"></script>
+<script type="text/javascript" src="./recipe-details-resource-main-page_files/url-utils.js"></script>
+<script type="text/javascript" src="./recipe-details-resource-main-page_files/content-config.js"></script>
+<script type="text/javascript" src="./recipe-details-resource-main-page_files/search-bar-placeholder.js"></script>
+
+
+<!-- Content
+============================================= -->
+<!--<section id="page-title-search">
+    <div align="center">
+        <form action="https://help.abundo.osp.tech/en-us/search" method="get">
+            <input id="landing-search" type="text" class="query" name="query" placeholder="Search the developer docs">
+        </form>
+    </div>
+</section>-->
+<section id="content">
+
+    <div id="help-heading" class="content-wrap">
+        <div class="container
+         clearfix">
+            <!--<div class="row">
+                <div class="col-sm-12"><p id="help-class"></p><p class="breadcrumbs2 osp-breadcrumbs" data-language="en-us"><span><a href="https://help.abundo.osp.tech/en-us/developer/">Developers</a><span class="breadcrumb__link-divider">/</span></span><span><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/">REST API Reference</a><span class="breadcrumb__link-divider">/</span></span><span><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/">Recipes</a><span class="breadcrumb__link-divider">/</span></span><span>Recipe Details</span></p>
+<p></p>
+                    <hr>
+                </div>
+            </div>-->
+
+            <div class="row">
+                <!--<div class="col-md-3"><div class="osp-side-nav" data-group="developeruser</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/supplier-confidence-overrides/">Supplier Confidence Overrides (Incoming Stock)</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/suppliers/">Suppliers</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/trade-items/">Trade Items</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/transfer-plans/">Transfer Plans</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/transfer-route-assignments/">Transfer Route Assignments</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/transfer-shipments/">Transfer Shipments</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/user-permissions/">Users and Permissions</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/webhooks/">Webhook APIs</a></li></ul></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/flex/">OSP Flex (GraphQL)</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/fulfillment-viewer/">Fulfillment Viewer (GraphQL)</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/banners-regions/">Working with retail banners and regions</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/sandbox/">Sandbox environment</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/cash-on-delivery-integration/">Cash on delivery integration</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/locker-integration/">Locker integration</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/custom-integrations/">Loyalty integration</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/machine-learning/">Machine learning</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/understand-recipes">Recipes integration</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/sso-integration/">Single sign-on integration</a></li><li class="side-nav-item nav-item "><a href="https://help.abundo.osp.tech/en-us/developer/api/external-delivery-integration/">External delivery integration</a></li></ul></div></div>-->
+</div>
+                <div class="col-md-9 pl-4 pr-4">
+                    
+                        
+                        
+
+	<div style="float:right;"><!--<label class="inline-block">Version:</label>-->
+		<select class="selectpicker" data-width="fit" onchange="window.location.assign(this.value);">
+			
+        	<option selected="" value="../1/">v1</option>
+            
+        </select></div>
+ 
+                        
+                    
+
+                    
+
+                    
+
+                    
+                    <h1 style="padding-top: 5px" id="help-page-title">Recipe Details resource </h1>
+                    
+
+                    
+
+                    <div class="entry-content notopmargin ">
+                        
+                        
+
+                        
+
+
+                        
+                            
+                                
+                                
+	<table class="table table-bordered">
+		
+		<tbody><tr>
+			<td><strong>Version</strong></td>
+			<td>1</td> 
+		</tr>
+		
+		<tr>
+			<td><strong>Base URL</strong></td>
+			<td><span id="retailer-url">https://api.abundo.osp.tech</span>/externalapi/</td>
+		</tr>
+		
+		<tr>
+			<td style="width: 25%"><strong>Service account role</strong></td>
+			<td>WS Recipes</td>
+		</tr>
+		
+		
+		
+		
+	
+		<tr>
+			<td><strong>Status</strong></td>
+			<td>
+				
+				
+				Active
+				</td>
+		</tr>
+	
+	</tbody></table>
+
+
+<a href="recipe-details-1.json" download="recipe-details-1.json" class="button button-3d button-rounded button-green"><i class="icon-download-alt"></i>Download JSON</a>
+
+
+<a href="swagger-viewer.html?spec=recipe-details-1.json" class="button button-3d button-rounded button-blue"><i class="icon-file-alt"></i>VIEW REFERENCE</a>
+
+
+
+                                <p>Use the Recipe Details resource to create, update, publish, and unpublish a recipe.</p>
+
+<p>To add new recipes, make sure you have the necessary <a href="https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/recipe-authors/">authors</a> and <a href="https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/recipe-units-of-measurement/">units of measurement</a> created in advance.</p>
+
+<p>Before you start, learn about the main concepts, dependencies, and other important considerations in <a href="https://help.abundo.osp.tech/en-us/developer/api/reference/recipes/understand-recipes">Recipes integration</a>.</p>
+
+<div id="toc" style="display: none;"></div><h2 id="change-history">Change history</h2>
+
+<p>Changes in this version of the resource:</p>
+
+<p>2025-01-24</p>
+
+<ul>
+  <li>Resource released</li>
+</ul>
+
+
+                                
+                            
+                        
+
+
+                        <!-- Show related links section if present -->
+
+                        
+
+                        
+
+
+                        <!-- Show swagger file if present -->
+                        
+                    </div>
+
+                    <hr style="margin-top: 3rem">
+<!--<div ub-in-page="60fa8287da240525713cec1a"><iframe width="100%" height="72" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="./recipe-details-resource-main-page_files/36b0e3517b7f77777dd1d6c30eaa0522724c124d.html" style="margin: 0px; padding: 0px; border: 0px; overflow: hidden; background-color: transparent;"></iframe></div>-->
+
+                </div>
+            </div>
+
+            <!-- Post Content
+            ============================================= -->
+            <div class="postcontent nobottommargin col_last clearfix">
+
+                <div class="single-post nobottommargin">
+
+                    <!-- Single Post
+                    ============================================= -->
+                    <div class="entry clearfix">
+
+                        <!-- Entry Title
+                        ============================================= -->
+                        <div class="entry-title">
+
+
+                        </div><!-- .entry-title end -->
+
+                        <!-- Mobile also in this section
+                        ============================================= -->
+
+                        <!-- Entry Content
+                        ============================================= -->
+
+
+                    </div><!-- .entry end -->
+                </div>
+            </div><!-- .postcontent end -->
+            <div class="sidebar nobottommargin clearfix">
+            </div>
+        </div>
+    </div>
+</section><!-- #content end -->
+
+
+
+    </div><!-- content wrapper -->
+
+
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="fs-unmask icon-angle-up"></div>
+
+    <div class="osp-preview-branch-cookie"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/plugins.js"></script>
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/user-info-loader.js"></script>
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/configuration-loader.js"></script>
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/language-switcher.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/functions.js"></script>
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/url-utils.js"></script>
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/content-config.js"></script>
+    <script type="text/javascript" src="./recipe-details-resource-main-page_files/searchForwarder.js"></script>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#side-navigation").tabs({show: {effect: "fade", duration: 400}});
+    });
+</script>
+    <script type="text/javascript">
+      $(function() {
+        $( "#side-navigation" ).tabs({ show: { effect: "fade", duration: 400 } });
+      });
+    </script>
+
+    <!-- Load DataTables js if this is page has a datafeed table -->
+    
+
+<!-- Load 'copy to clipboard' script -->
+
+
+
+<!-- Load highlightjs syntax highlighter -->
+<script src="./recipe-details-resource-main-page_files/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- On This Page minitoc JavaScript
+    ================================================== -->
+    
+
+    <script src="./recipe-details-resource-main-page_files/toc.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('#toc').toc();
+      });
+    </script>
+
+
+    
+
+    <!-- On This Page minitoc JavaScript
+    ================================================== -->
+    
+
+        <!-- On This Page minitoc JavaScript
+    ================================================== -->
+    
+
+
+    <!-- Show info that user has been redirected to english version -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (urlUtils.getParam('redirectFrom')) {
+                onlinehelp.configLoader.done(function(config) {
+                    $('#snackbar').text(urlUtils.getFallbackMessage(config.languages, config.defaultLanguage));
+                    var x = document.getElementById("snackbar");
+
+                    x.className = "show";
+
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 6000);
+                });
+            }
+        });
+    </script>
+
+    
+    <!-- Position the page TOC above the first heading 2
+    ================================================== -->
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('<div id="toc"></div>').insertBefore("#content h2:first-of-type");
+        $('#toc').toc();
+      });
+    </script>
+    
+
+    <!-- Load Google Analytics --->
+    <script type="text/javascript">
+        let gaId = getCookie("google-analytics-id");
+        if (!gaId) {
+            $.get('/api/v1/properties/googleAnalyticsAccountId', '', function (data) {
+                gaId = data;
+                console.log(`Received GA4 id: ${gaId}`)
+                createCookie("google-analytics-id", gaId, 1);
+            }).fail(function () {
+                console.log("Failed to receive GA4 id");
+            });
+        }
+        else {
+            console.log(`Found GA4 id in cookie: ${gaId}`);
+        }
+
+        const gaScript = document.createElement('script');
+        gaScript.type = 'text/javascript';
+        gaScript.async = true;
+        gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        document.getElementsByTagName('head')[0].appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+    </script>
+
+    <!-- Fullstory -->
+    <script>
+        window['_fs_debug'] = false;
+        window['_fs_host'] = 'fullstory.com';
+        window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+        window['_fs_org'] = 'YBZW3';
+        window['_fs_namespace'] = 'FS';
+        (function(m,n,e,t,l,o,g,y){
+            if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+            g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+            o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;
+            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+            g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+            g.anonymize=function(){g.identify(!!0)};
+            g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+            g.log = function(a,b){g("log",[a,b])};
+            g.consent=function(a){g("consent",!arguments.length||a)};
+            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+            g.clearUserCookie=function(){};
+            g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
+            if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
+            g._v="1.2.0";
+        })(window,document,window['_fs_namespace'],'script','user');
+    </script>
+
+<!--    React components-->
+    <script src="./recipe-details-resource-main-page_files/bundle.js"></script>
+
+    <!-- begin usabilla live embed code -->
+    <!--<script type="text/javascript">window.lightningjs||function(n){var e="lightningjs";function t(e,t){var r,i,a,o,d,c;return t&&(t+=(/\?/.test(t)?"&":"?")+"lv=1"),n[e]||(r=window,i=document,a=e,o=i.location.protocol,d="load",c=0,function(){n[a]=function(){var t=arguments,i=this,o=++c,d=i&&i!=r&&i.id||0;function s(){return s.id=o,n[a].apply(s,arguments)}return(e.s=e.s||[]).push([o,d,t]),s.then=function(n,t,r){var i=e.fh[o]=e.fh[o]||[],a=e.eh[o]=e.eh[o]||[],d=e.ph[o]=e.ph[o]||[];return n&&i.push(n),t&&a.push(t),r&&d.push(r),s},s};var e=n[a]._={};function s(){e.P(d),e.w=1,n[a]("_load")}e.fh={},e.eh={},e.ph={},e.l=t?t.replace(/^\/\//,("https:"==o?o:"http:")+"//"):t,e.p={0:+new Date},e.P=function(n){e.p[n]=new Date-e.p[0]},e.w&&s(),r.addEventListener?r.addEventListener(d,s,!1):r.attachEvent("onload",s);var l=function(){function n(){return["<!DOCTYPE ",o,"><",o,"><head></head><",t,"><",r,' src="',e.l,'"></',r,"></",t,"></",o,">"].join("")}var t="body",r="script",o="html",d=i[t];if(!d)return setTimeout(l,100);e.P(1);var c,s=i.createElement("div"),h=s.appendChild(i.createElement("div")),u=i.createElement("iframe");s.style.display="none",d.insertBefore(s,d.firstChild).id="lightningjs-"+a,u.frameBorder="0",u.id="lightningjs-frame-"+a,/MSIE[ ]+6/.test(navigator.userAgent)&&(u.src="javascript:false"),u.allowTransparency="true",h.appendChild(u);try{u.contentWindow.document.open()}catch(n){e.domain=i.domain,c="javascript:var d=document.open();d.domain='"+i.domain+"';",u.src=c+"void(0);"}try{var p=u.contentWindow.document;p.write(n()),p.close()}catch(e){u.src=c+'d.write("'+n().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}e.P(2)};e.l&&l()}()),n[e].lv="1",n[e]}var r=window.lightningjs=t(e);r.require=t,r.modules=n}({});window.usabilla_live = lightningjs.require("usabilla_live", "//w.usabilla.com/4e6ba424f097.js");</script>
+    <script>/*{literal}<![CDATA[*/window.usabilla||function(){var a=window,d=a.document,c={},f=d.createElement("div"),h=!1,a=a.usabilla=function(){(c.a=c.a||[]).push(arguments)};a._=c;c.ids={};f.style.display="none";(function(){if(!d.body)return setTimeout(arguments.callee,100);d.body.insertBefore(f,d.body.firstChild).id="usabilla";h=!0})();a.load=function(a,g,k){if(!c.ids[g]){var e=c.ids={};e.url="//"+a+"/"+g+".js?s1";e.config=k;setTimeout(function(){if(!h)return setTimeout(arguments.callee,100);var b=d.createElement("iframe"),a;b.id="usabilla-"+g;/MSIE[ ]+6/.test(navigator.userAgent)&&(b.src="javascript:false");f.appendChild(b);try{b.contentWindow.document.open()}catch(c){e.domain=d.domain,a="javascript:var d=document.open();d.domain='"+e.domain+"';",b.src=a+"void(0);"}try{var l=b.contentWindow.document;l.write(["<!DOCTYPE html><html><head></head><body onload=\"var d = document;d.getElementsByTagName('head')[0].appendChild(d.createElement('script')).src='",e.url,"'\"></body></html>"].join(""));l.close()}catch(m){b.src=a+'d.write("'+loaderHtml().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}b.contentWindow.config=k;b.contentWindow.SCRIPT_ID=g},0)}}}();
+    window.usabilla.load("w.usabilla.com", "6cf187e194da");
+    /*]]>{/literal}*/</script>-->
+    <!-- end usabilla live embed code -->
+
+  
+
+
+
+<!--<div class="usabilla_live_button_container" id="usabilla_live_button_container_470996879" role="button" tabindex="0" aria-label="Usabilla Feedback Button"><style type="text/css" nonce="">div.usabilla_live_button_container#usabilla_live_button_container_470996879[role="button"] {position:fixed;z-index:999;right:0;top:70%;margin-top:-83px;width:40px;height:166px}</style><iframe src="./recipe-details-resource-main-page_files/saved_resource(2).html" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" data-tags="right" title="Usabilla Feedback Button" class="usabilla-live-button" id="usabilla_live_button_container_iframe875750229" style="top: 0px;"></iframe></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

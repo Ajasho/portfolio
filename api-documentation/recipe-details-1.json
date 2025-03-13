@@ -1,0 +1,654 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Recipe Details",
+    "description" : "Use the Recipe Details resource to create, update, publish, and unpublish a recipe.",
+    "version" : "v1"
+  },
+  "paths" : {
+    "/v1/{retailerBannerId}/recipe-details" : {
+      "put" : {
+        "summary" : "Create, update a recipe",
+        "description" : "Use this endpoint to create a recipe. If there is no recipe with equal `retailerRecipeDetailsId` then a new one is created, otherwise an existing one is updated. If a recipe refers to an unknown author, or recipe unit of measurement then the validation fails. The content type is recipesRecipeDetails.",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RecipeDetails"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : { }
+          },
+          "400" : {
+            "description" : "CC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "CC-012 - Unsupported media type",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name" : "RecipeDetails"
+      }
+    },
+    "/v1/{retailerBannerId}/recipe-details/{retailerRecipeDetailsId}/published" : {
+      "put" : {
+        "summary" : "Publish, unpublish a recipe",
+        "description" : "Publishing a recipe regardless of its current state: draft, changed, published, or archived. Unpublishing a recipe only if its state is published. The content type is recipesRecipeDetails.",
+        "parameters" : [ {
+          "name" : "x-api-key",
+          "in" : "header",
+          "description" : "The API key for your environment. If you don't know your API key, speak to your Ocado contact.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Format: Bearer {{token_value}}",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "Bearer TOKEN"
+          }
+        }, {
+          "name" : "RequestId",
+          "in" : "header",
+          "description" : "Request id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "default" : "aa13e836-5c1a-4b05-b24d-d30571c49da8"
+          }
+        }, {
+          "name" : "retailerBannerId",
+          "in" : "path",
+          "description" : "Your unique identifier for the retail banner.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "retailerRecipeDetailsId",
+          "in" : "path",
+          "description" : "The unique identifier of the recipe content.",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PublishDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : { }
+          },
+          "400" : {
+            "description" : "RCPC-0001 - Entry cannot be published/unpublished,\nCC-002 - Bad request exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "CC-090 - Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "CC-091 - Access is denied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CC-2600 - The given retail banner cannot be found, or the service account used does not have permission for the given retail banner,\nRCPC-0005 - Recipe details not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "CC-012 - Unsupported media type",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "CC-001 - Unhandled exception",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name" : "PublishDto"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ErrorResponse" : {
+        "required" : [ "code", "httpStatus", "message", "moreInfo", "timestamp" ],
+        "type" : "object",
+        "properties" : {
+          "timestamp" : {
+            "type" : "string",
+            "description" : "Date with time when response was generated",
+            "format" : "date-time"
+          },
+          "httpStatus" : {
+            "type" : "integer",
+            "description" : "HTTP response status code",
+            "format" : "int32",
+            "example" : 400
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Textual details about error, may contain parameters described in `args`"
+          },
+          "args" : {
+            "type" : "object",
+            "properties" : { },
+            "additionalProperties" : true,
+            "description" : "Optional values for parameters used in 'message'"
+          },
+          "code" : {
+            "pattern" : "[-A-Z0-9]+",
+            "type" : "string",
+            "description" : "Custom OSP error code"
+          },
+          "moreInfo" : {
+            "type" : "string",
+            "description" : "Link to troubleshooting page with information about the error"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Error response schema. It provides more information about reason when request fail."
+      },
+      "GroupMethod" : {
+        "required" : [ "heading", "steps" ],
+        "type" : "object",
+        "properties" : {
+          "heading" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "A heading to create distinct sections (e.g. Prepare the ingredients)."
+          },
+          "steps" : {
+            "type" : "array",
+            "description" : "Step description, e.g. Shred the cheese.",
+            "items" : {
+              "pattern" : "",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "Image" : {
+        "required" : [ "fileName", "fileType", "title", "uploadUrl" ],
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "The title of the image. No uniqueness restriction is applied."
+          },
+          "fileType" : {
+            "type" : "string",
+            "description" : "The file type of the image: \n*IMAGE/JPG - image/jpg\n* IMAGE/PNG - image/png\n* IMAGE/WEBP - image/webp\n* IMAGE/GIF - image/gif\n* IMAGE/AVIF - image/avif\n* IMAGE/TIFF - image/tiff",
+            "enum" : [ "IMAGE/JPG", "IMAGE/PNG", "IMAGE/WEBP", "IMAGE/GIF", "IMAGE/AVIF", "IMAGE/TIFF" ]
+          },
+          "fileName" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "The file name of the image."
+          },
+          "uploadUrl" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "The upload URL where the image is uploaded from by Contentful."
+          }
+        },
+        "description" : ""
+      },
+      "Ingredient" : {
+        "required" : [ "ingredientEntry", "searchTermMode" ],
+        "type" : "object",
+        "properties" : {
+          "retailerRecipeUnitOfMeasurementId" : {
+            "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+            "type" : "string",
+            "description" : "The unit of measure that the ingredient's quantity is expressed in. The entry should exist at the time of the recipes details entry processing."
+          },
+          "ingredientEntry" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "Add the ingredient, either as a freeform text, for example, 'a pinch of salt', or using the @quantity and @uom tags before the ingredient, for example, to show '2kg flour', type '@quantity@uom flour'."
+          },
+          "quantity" : {
+            "type" : "integer",
+            "description" : "The ingredient quantity, e.g. 500, 1.5.\n(@quantity)",
+            "format" : "int32",
+            "example" : 0
+          },
+          "searchTerm" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "The search term under which your customers may look up the ingredient.\nIf the value is not empty then it will be put into the ingredient Contentful entry, otherwise, the value is generated via the Artificial Intelligence generator."
+          },
+          "searchTermMode" : {
+            "type" : "string",
+            "description" : "The search term population mode: \n* AI-GENERATED (default) - using the value generated by the Artificial Intelligence\n* MANUAL - the value was written by an editor",
+            "enum" : [ "AI-GENERATED", "MANUAL" ]
+          }
+        },
+        "description" : ""
+      },
+      "InternationalizedString" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "Text in the specified locale."
+          }
+        },
+        "description" : "Multi-language string."
+      },
+      "LocalizedArrayOfStrings" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "type" : "array",
+            "description" : "The list of the meta keywords.",
+            "items" : {
+              "pattern" : "",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      },
+      "LocalizedIngredient" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "description" : "",
+            "$ref" : "#/components/schemas/Ingredient"
+          }
+        },
+        "description" : ""
+      },
+      "Method" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "^[a-z]{2}-([a-z]{2}|[A-Z]{2})$",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "description" : "The steps required to complete this recipe. Either **single** or **groups** should be used for a given locale.",
+            "$ref" : "#/components/schemas/MethodObject"
+          }
+        },
+        "description" : ""
+      },
+      "MethodObject" : {
+        "required" : [ "groups", "single", "type" ],
+        "type" : "object",
+        "properties" : {
+          "single" : {
+            "type" : "array",
+            "description" : "A simple set of steps the customer must follow to complete this recipe. \nStep description, e.g. Heat oven to 200C/180C fan/gas 6).",
+            "items" : {
+              "pattern" : "",
+              "type" : "string"
+            }
+          },
+          "groups" : {
+            "type" : "array",
+            "description" : "A grouped set of steps under one heading.",
+            "items" : {
+              "$ref" : "#/components/schemas/GroupMethod"
+            }
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "The type of method step definition:\n* SIMPLE - a method is a list of steps like below:\n```\n\"single\": [\"Clean the surface of the prime rib with salt water\",\n          \"Grab a rimmed sheet pan and pour onto it about 1.5 cups of course sea salt\",\n          \"Put the prime rib in the fridge, uncovered, and allow to age for between 30 and 40 days\",\n         \"Wait for your prime rib to get funky\"]\n```\n* GROUPS - a method is a grouped steps like below:\n```\n\"groups\": [\n          {\n            \"heading\": \"Preparing the rib\",\n            \"steps\": [\n\"Clean the surface of the prime rib with salt water\",\n          \"Grab a rimmed sheet pan and pour onto it about 1.5 cups of course sea salt\",\n          \"Put the prime rib in the fridge, uncovered, and allow to age for between 30 and 40 days\",\n         \"Wait for your prime rib to get funky\"            ]\n          },\n          {\n            \"heading\": \"Cooking\",\n            \"steps\": [\n              \"As needed, trim any hard, dry surfaces and fat.\",\n              \"Place the prime rib on a roasting rack to rest.\",\n              \"Remove the prime rib from the fridge and cover it loosely with aluminum foil.\"\n            ]\n          }\n        ]\n```",
+            "enum" : [ "SIMPLE", "GROUPS" ]
+          }
+        },
+        "description" : ""
+      },
+      "PublishDto" : {
+        "required" : [ "published" ],
+        "type" : "object",
+        "properties" : {
+          "published" : {
+            "type" : "boolean",
+            "description" : "The field defines whether the entry content will be published or unpublished.\n* true - the unit of measurement is published\n* false - the unit of measurement is unpublished"
+          }
+        },
+        "description" : "Body of the request to call publishing/unpublishing of the entry content."
+      },
+      "RecipeDetails" : {
+        "required" : [ "description", "image", "imageAltText", "ingredients", "method", "publishedDate", "retailerRecipeAuthorId", "retailerRecipeDetailsId", "slug", "title", "totalTimeMinutes" ],
+        "type" : "object",
+        "properties" : {
+          "retailerRecipeDetailsId" : {
+            "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+            "type" : "string",
+            "description" : "Used to identify the recipe content when using the external API to manage your recipes. The value must be unique."
+          },
+          "title" : {
+            "description" : "The title of the recipe details. The value is unique. The limit is 70 characters.",
+            "$ref" : "#/components/schemas/InternationalizedString"
+          },
+          "description" : {
+            "description" : "The description of the recipe details. No uniqueness restriction is applied. The value is limited to 256 characters.",
+            "$ref" : "#/components/schemas/InternationalizedString"
+          },
+          "slug" : {
+            "description" : "The slug of the recipe details. The value is unique. The value is limited to 256 characters.",
+            "$ref" : "#/components/schemas/InternationalizedString"
+          },
+          "image" : {
+            "description" : "The image of the recipe details. The image size limit is set to  20MB. The image dimensions limits are 'width at most 10000px' and 'height at most 10000px'. The image asset is created every time an entry is created or update. A newly-created asset is pass to the Contentful `Processing an asset`API to trigger the image uploading into the Contentful storage.",
+            "$ref" : "#/components/schemas/Image"
+          },
+          "imageAltText" : {
+            "description" : "The image alt text of the recipe details. No uniqueness restriction is applied. The value is limited to 256 characters.",
+            "$ref" : "#/components/schemas/InternationalizedString"
+          },
+          "publishedDate" : {
+            "type" : "string",
+            "description" : "The published date of the recipe details.",
+            "format" : "date"
+          },
+          "retailerRecipeAuthorId" : {
+            "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+            "type" : "string",
+            "description" : "The reatiler content id of the author linked to a given recipe details. The author should exist at the time of the recipes details entry processing."
+          },
+          "ingredients" : {
+            "type" : "array",
+            "description" : "The list of ingredients required to complete the recipe.",
+            "items" : {
+              "$ref" : "#/components/schemas/LocalizedIngredient"
+            }
+          },
+          "method" : {
+            "type" : "array",
+            "description" : "A set of steps the customer must follow to complete this recipe. ",
+            "items" : {
+              "$ref" : "#/components/schemas/Method"
+            }
+          },
+          "retailerRegionIds" : {
+            "minItems" : 0,
+            "type" : "array",
+            "description" : "The list of regions where the recipe details will be available in. The regions should be available under a given banner. If no retailer region ids are passed then all regions available under the given banner are assigned.",
+            "items" : {
+              "pattern" : "^[a-zA-Z0-9-_]{1,64}$",
+              "type" : "string"
+            }
+          },
+          "searchTerms" : {
+            "type" : "array",
+            "description" : "The list of terms used to search for the recipe, entered in lowercase. No uniqueness restriction is applied.",
+            "items" : {
+              "$ref" : "#/components/schemas/SearchTerms"
+            }
+          },
+          "numberOfServings" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The number of servings in the recipe.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "caloriesPerServing" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The number of calories in one serving.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "preparationTimeMinutes" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The time required to prepare the ingredients.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "cookingTimeMinutes" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The time required to cook the recipe.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "totalTimeMinutes" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "The total time required to prepare and cook the recipe.",
+            "format" : "int32",
+            "example" : 2
+          },
+          "structuredDataKeywords" : {
+            "type" : "array",
+            "description" : "Other terms that you want to link to the recipe, e.g. 'summer', 'Halloween', or 'quick', 'easy'.",
+            "items" : {
+              "$ref" : "#/components/schemas/LocalizedArrayOfStrings"
+            }
+          },
+          "seoIndex" : {
+            "type" : "boolean",
+            "description" : "Indicates whether the recipe collection details are indexed to appear in the Google search results:\n* true - index the recipe collection details\n* false - exclude from indexing\nThe default value is null."
+          },
+          "seoCanonicalUrl" : {
+            "type" : "array",
+            "description" : "If multiple URLs are used to access this recipe, the canonical URL is the most representative one and will be crawled by Google.",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "seoMetaTitle" : {
+            "type" : "array",
+            "description" : "The page title that is displayed in the browser's title bar or in the page's tab. If empty, the 'Recipe title tag rule' is used instead.",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "seoMetaDescription" : {
+            "type" : "array",
+            "description" : "A short description of the page displayed in the search results. If empty, the 'Recipe description tag rule' is used instead.",
+            "items" : {
+              "$ref" : "#/components/schemas/InternationalizedString"
+            }
+          },
+          "seoMetaKeywords" : {
+            "type" : "array",
+            "description" : "The list of keywords to help describe the page to the legacy search engines.",
+            "items" : {
+              "$ref" : "#/components/schemas/LocalizedArrayOfStrings"
+            }
+          }
+        },
+        "description" : "Body of the request to create or update a recipe content."
+      },
+      "SearchTerms" : {
+        "required" : [ "locale", "value" ],
+        "type" : "object",
+        "properties" : {
+          "locale" : {
+            "pattern" : "",
+            "type" : "string",
+            "description" : "The two-letter ISO 639-1 language code, and two letter ISO 3166-1 alpha-2 region code, separated by a hyphen. For example, en-GB."
+          },
+          "value" : {
+            "type" : "array",
+            "description" : " The list of the search terms under which your customers may look up this ingredient.",
+            "items" : {
+              "pattern" : "",
+              "type" : "string"
+            }
+          }
+        },
+        "description" : ""
+      }
+    }
+  }
+}
