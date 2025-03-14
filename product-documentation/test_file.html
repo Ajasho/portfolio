@@ -97,9 +97,11 @@
 
         /* Name styling */
         .header-name {
-            color: white;
+            color: lightgrey;
             font-size: 24px;
             font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         /* Navigation styling */
@@ -113,7 +115,7 @@
 
         /* Navigation links */
         .header-nav .nav-link {
-            color: white;
+            color: lightgrey;
             font-size: 16px;
             font-weight: bold;
             text-decoration: none;
@@ -122,7 +124,11 @@
 
         /* Only text color changes on hover */
         .header-nav .nav-link:hover {
-            color: #007bff; /* Blue text on hover */
+            color: deepskyblue; /* Blue text on hover */
+        }
+
+        .header-name:hover {
+            color: deepskyblue; /* Blue text on hover */
         }
 
 
@@ -176,7 +182,7 @@
     <div class="container header-container">
       
       <!-- Your name on the left -->
-      <div class="header-name">Ajeesh Kambalath</div>
+      <a href="../index.html" class="header-name">Ajeesh Kambalath</a>
 
       <!-- Navigation Buttons -->
       <nav class="header-nav">
